@@ -1,0 +1,67 @@
+<section>
+<h3 id="1.6" class="subchapter">Exterior Angle Theorem</h3>
+<blockquote>
+  In any triangle, if a side is produced, the exterior angle is greater than either of the two non-adjacent interior angles.
+</blockquote>
+<p>
+  <span class="verse-ref">Elements</span><span class="verse-num-ref">I.16</span>
+  For △<strong>ABC</strong>, extend side <strong>BC</strong> to <strong>D</strong>. Then the exterior angle at <strong>C</strong> satisfies
+  <code>∠ACD &gt; ∠A</code> and <code>∠ACD &gt; ∠B</code>.
+</p>
+<h4>Proof</h4>
+<p>
+  Bisect <strong>AC</strong> at <strong>E</strong> (<a href="#1.4">1.4</a>). Join <strong>BE</strong>, and produce it beyond <strong>E</strong> to <strong>F</strong> so that <code>BE = EF</code>. Join <strong>FC</strong>.
+  Then <code>AE = CE</code>, <code>BE = EF</code>, and the vertical angles at <strong>E</strong> are equal (I.15), so △<strong>ABE</strong> ≅ △<strong>CEF</strong> (SAS, I.4).
+  Hence <code>∠A = ∠ECF</code>. Since ray <strong>CF</strong> lies inside the exterior angle <code>∠ACD</code>, we have <code>∠ECF &lt; ∠ACD</code>, so <code>∠A &lt; ∠ACD</code>.
+  Repeating the same construction with the midpoint of <strong>BC</strong> shows <code>∠B &lt; ∠ACD</code>. Q.E.D.
+</p>
+<figure class="triangle-container" data-figure="i16-angles" aria-labelledby="i16-caption">
+  <figcaption id="i16-caption">
+    <h3>Exterior angle is greater than either remote interior angle.</h3>
+  </figcaption>
+
+  <!-- Still diagram for I.16: △ABC with BC extended to D; midpoint E of AC; BE produced to F; show ∠ACD (large) and subangle ∠ECF (equal to ∠A). -->
+  <svg id="i16-external-angle" viewBox="-120 -30 420 240" role="img"
+       aria-labelledby="i16-title i16-desc" style="max-width:100%;height:auto">
+    <title id="i16-title">Euclid I.16: Exterior angle &gt; either remote interior</title>
+    <desc id="i16-desc">Triangle ABC with BC extended to D. AC is bisected at E; BE is produced to F with BE = EF; FC drawn. Angle ∠ECF equals ∠A and is strictly less than the exterior angle ∠ACD.</desc>
+
+    <!-- Coordinates: A(0,0); B(180,0); C(110,140); D on line BC beyond C; E midpoint of AC; F on ray BE with BE = EF -->
+    <!-- Precomputed points: D(89,182); E(55,70); F(-70,140) -->
+
+    <!-- Triangle edges -->
+    <g id="edges" aria-label="Triangle ABC">
+      <line x1="0" y1="0" x2="180" y2="0" class="line path-delight" stroke-width="1.6"/>       <!-- AB -->
+      <line x1="0" y1="0" x2="110" y2="140" class="line path-delight" stroke-width="1.6"/>     <!-- AC -->
+      <line x1="180" y1="0" x2="110" y2="140" class="line path-delight" stroke-width="1.6"/>   <!-- BC -->
+      <line x1="110" y1="140" x2="89" y2="182"
+            class="line path-default" stroke-width="1.2" stroke-dasharray="4 4"/>              <!-- extension to D -->
+    </g>
+
+    <!-- Construction lines for I.16 -->
+    <g id="construction" aria-label="Auxiliary construction">
+      <!-- BE solid; EF dashed (to indicate BE is produced to F) -->
+      <line x1="180" y1="0" x2="55" y2="70" class="line path-default" stroke-width="1.2"/>     <!-- BE -->
+      <line x1="55" y1="70" x2="-70" y2="140" class="line path-default" stroke-width="1.2" stroke-dasharray="4 4"/> <!-- EF -->
+      <line x1="-70" y1="140" x2="110" y2="140" class="line path-default" stroke-width="1.2"/> <!-- FC -->
+      <!-- Midpoint tick on AC at E -->
+      <line x1="51" y1="64" x2="59" y2="76" class="line path-default" stroke-width="1"/>
+    </g>
+
+    <!-- Angle arcs -->
+    <g id="arcs" aria-label="Angle markings">
+      <!-- Angle arcs generated programmatically by scripts/figures/i16-angles.js -->
+    </g>
+
+    <!-- Labels -->
+    <g id="labels" aria-label="Point labels">
+      <circle class="point" cx="0"   cy="0"   r="3"/><text x="-10" y="-8"  class="label-text">A</text>
+      <circle class="point" cx="180" cy="0"   r="3"/><text x="186" y="-8"  class="label-text">B</text>
+      <circle class="point" cx="110" cy="140" r="3"/><text x="116" y="155" class="label-text">C</text>
+      <circle class="point" cx="89"  cy="182" r="3"/><text x="96"  y="192" class="label-text">D</text>
+      <circle class="point" cx="55"  cy="70"  r="3"/><text x="48"  y="62"  class="label-text">E</text>
+      <circle class="point" cx="-70" cy="140" r="3"/><text x="-82" y="152" class="label-text">F</text>
+    </g>
+  </svg>
+</figure>
+</section>

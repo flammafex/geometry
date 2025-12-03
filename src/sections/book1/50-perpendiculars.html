@@ -1,0 +1,182 @@
+<section>
+<h3 id="1.5" class="subchapter">Perpendiculars</h3>
+<!-- ——————————————————————————————————————————————— -->
+<!-- I.11 — Draw ⟂ from a point ON a line (perpendicular at A to ℓ) -->
+<!-- ——————————————————————————————————————————————— -->
+<h4 id="1.5-on">Perpendicular at a Point on a Line</h4>
+<blockquote>
+  From a point on a given straight line, a straight line can be drawn at right angles to the given line.
+</blockquote>
+<p>
+  <span class="verse-ref">Elements</span><span class="verse-num-ref">I.11</span>
+  On the line <strong>ℓ</strong>, pick equal points <strong>B</strong> and <strong>C</strong> on either side of <strong>A</strong>. With the same radius, swing arcs from <strong>B</strong> and <strong>C</strong> to meet at <strong>X</strong> and <strong>Y</strong>. The line <strong>XY</strong> passes through <strong>A</strong> and is ⟂ to <strong>ℓ</strong>.
+</p>
+<h5>Proof</h5>
+<p>
+  From the equal-radius circles at <strong>B</strong> and <strong>C</strong>, we have <code>|XB|=|XC|</code> and <code>|YB|=|YC|</code>. Thus <strong>X</strong> and <strong>Y</strong> lie on the perpendicular bisector of <strong>BC</strong>. Since <strong>A</strong> is the midpoint of <strong>BC</strong>, the line through <strong>X</strong> and <strong>Y</strong> is ⟂ to <strong>ℓ</strong> at <strong>A</strong>. Q.E.D.
+</p>
+<figure class="triangle-container" data-figure="i11-perp-on" aria-labelledby="i11-caption">
+  <figcaption id="i11-caption">
+    <h3>Perpendicular at A on line ℓ.</h3>
+    Step: draw ℓ (…B–A–C) → circle(B) → circle(C) → reveal X,Y → draw XY (⟂ at A).
+  </figcaption>
+  <div class="heptagon-button-container" aria-label="Animation controls">
+    <button class="clearButton" id="i11-step" type="button">Step</button>
+    <button class="clearButton" id="i11-reset" type="button">Reset</button>
+  </div>
+  <!-- Coordinates: A(0,0), B(-120,0), C(120,0); r = 150 ⇒ intersections at (0, ±90) -->
+  <svg id="i11-perp-on" viewBox="-320 -210 640 460" role="img"
+       aria-labelledby="i11-title i11-desc" style="max-width:100%;height:auto">
+    <title id="i11-title">Prop. I.11 — Draw a perpendicular at a point on a line</title>
+    <desc id="i11-desc">Equal-radius circles centered at B and C meet at X and Y; XY is the perpendicular through A to the base line.</desc>
+
+    <!-- base line ℓ -->
+    <g id="given">
+      <line id="i11-l" x1="-200" y1="0" x2="200" y2="0"
+            class="line path-delight draw" style="--len:400; --dur:0.7s" stroke-width="2"/>
+    </g>
+
+    <!-- construction circles -->
+    <g id="construction">
+      <circle id="i11-cB" cx="-120" cy="0" r="150"
+              class="line path-default draw no-fill"
+              style="--len:942.48; --dur:1.0s" stroke-width="1.2"/>
+      <circle id="i11-cC" cx="120" cy="0" r="150"
+              class="line path-default draw no-fill"
+              style="--len:942.48; --dur:1.0s" stroke-width="1.2"/>
+    </g>
+
+    <!-- compass arms (visible only during sweep) -->
+    <g id="i11-compasses">
+      <g id="i11-compassB" class="gone">
+        <line x1="-120" y1="0" x2="30" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="30" cy="0" class="point compass-dot"/>
+        <animateTransform id="i11-spinB"
+          attributeName="transform" type="rotate"
+          from="0 -120 0" to="360 -120 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+      </g>
+      <g id="i11-compassC" class="gone">
+        <line x1="120" y1="0" x2="270" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="270" cy="0" class="point compass-dot"/>
+        <animateTransform id="i11-spinC"
+          attributeName="transform" type="rotate"
+          from="0 120 0" to="360 120 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+      </g>
+    </g>
+
+    <!-- result -->
+    <g id="result">
+      <line id="i11-xy" x1="0" y1="-90" x2="0" y2="90"
+            class="line path-delight draw" style="--len:180; --dur:0.8s" stroke-width="2.25"/>
+      <!-- right-angle box at A generated programmatically by scripts/figures/i11-perp-on.js -->
+    </g>
+
+    <!-- labels -->
+    <g id="labels">
+      <circle class="point" cx="-120" cy="0" r="3"/><text x="-132" y="-10" class="label-text">B</text>
+      <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+      <circle class="point" cx="120" cy="0" r="3"/><text x="126" y="-10" class="label-text">C</text>
+      <circle id="i11-X" class="point fade" cx="0" cy="-90" r="3"/><text id="i11-Xt" x="6" y="-90" class="label-text fade">X</text>
+      <circle id="i11-Y" class="point fade" cx="0" cy="90" r="3"/><text id="i11-Yt" x="6" y="90" class="label-text fade">Y</text>
+    </g>
+  </svg>
+
+</figure>
+</section>
+	<section>
+<h4 id="1.5-off">Perpendicular from a Point to a Line</h4>
+<blockquote>
+  From a point not on a given straight line, a straight line can be drawn perpendicular to the given line.
+</blockquote>
+<p>
+  <span class="verse-ref">Elements</span><span class="verse-num-ref">I.12</span>
+  With center <strong>P</strong>, swing a circle to meet the line at <strong>X</strong> and <strong>Y</strong>. Bisect <strong>XY</strong> at <strong>M</strong>. The line <strong>PM</strong> is ⟂ to the base line.
+</p>
+<h5>Proof</h5>
+<p>
+  The points <strong>X</strong> and <strong>Y</strong> are equidistant from <strong>P</strong>. The midpoint <strong>M</strong> of <strong>XY</strong> lies on the perpendicular bisector of <strong>XY</strong>. Since <strong>P</strong> is also equidistant from <strong>X</strong> and <strong>Y</strong>, the line <strong>PM</strong> is that perpendicular bisector, hence ⟂ to the base line at <strong>M</strong>. Q.E.D.
+</p>
+<figure class="triangle-container" data-figure="i12-perp-off" aria-labelledby="i12-caption">
+  <figcaption id="i12-caption">
+    <h3>Perpendicular from P to line ℓ.</h3>
+    Step: draw ℓ → circle(P) hits X,Y → circle(X) &amp; circle(Y) → draw UV (bisector) &amp; mark M → draw PM (⟂).
+  </figcaption>
+
+  <div class="heptagon-button-container" aria-label="Animation controls">
+    <button class="clearButton" id="i12-step" type="button">Step</button>
+    <button class="clearButton" id="i12-reset" type="button">Reset</button>
+  </div>
+
+  <!-- Coordinates: ℓ is y=0; P(80,120); circle r=150 ⇒ X(-10,0), Y(170,0); midpoint M(80,0) -->
+  <svg id="i12-perp-off" viewBox="-180 -170 580 460" role="img"
+       aria-labelledby="i12-title i12-desc" style="max-width:100%;height:auto">
+    <title id="i12-title">Prop. I.12 — Draw a perpendicular to a line from a point not on it</title>
+    <desc id="i12-desc">Circle centered at P meets the base line at X and Y; the perpendicular bisector of XY meets the base at M; PM is the perpendicular.</desc>
+
+    <!-- base line ℓ -->
+    <g id="given">
+      <line id="i12-l" x1="-60" y1="0" x2="300" y2="0"
+            class="line path-delight draw" style="--len:360; --dur:0.7s" stroke-width="2"/>
+    </g>
+
+    <!-- construction circles -->
+    <g id="construction">
+      <!-- circle at P -->
+      <circle id="i12-cP" cx="80" cy="120" r="150"
+              class="line path-default draw no-fill"
+              style="--len:942.48; --dur:1.0s" stroke-width="1.2"/>
+      <!-- circles at X and Y for midpoint -->
+      <circle id="i12-cX" cx="-10" cy="0" r="120"
+              class="line path-default draw no-fill"
+              style="--len:753.98; --dur:1.0s" stroke-width="1.0"/>
+      <circle id="i12-cY" cx="170" cy="0" r="120"
+              class="line path-default draw no-fill"
+              style="--len:753.98; --dur:1.0s" stroke-width="1.0"/>
+    </g>
+
+    <!-- compass arms -->
+    <g id="i12-compasses">
+      <g id="i12-compassP" class="gone">
+        <line x1="80" y1="120" x2="230" y2="120" class="line path-default" stroke-width="1"/>
+        <circle cx="230" cy="120" class="point compass-dot"/>
+        <animateTransform id="i12-spinP"
+          attributeName="transform" type="rotate"
+          from="0 80 120" to="360 80 120" dur="1.0s" fill="freeze" begin="indefinite"/>
+      </g>
+      <g id="i12-compassX" class="gone">
+        <line x1="-10" y1="0" x2="110" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="110" cy="0" class="point compass-dot"/>
+        <animateTransform id="i12-spinX"
+          attributeName="transform" type="rotate"
+          from="0 -10 0" to="360 -10 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+      </g>
+      <g id="i12-compassY" class="gone">
+        <line x1="170" y1="0" x2="290" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="290" cy="0" class="point compass-dot"/>
+        <animateTransform id="i12-spinY"
+          attributeName="transform" type="rotate"
+          from="0 170 0" to="360 170 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+      </g>
+    </g>
+
+    <!-- result: UV is perpendicular bisector of XY; M is midpoint; PM is the perpendicular -->
+    <g id="result">
+      <line id="i12-uv" x1="80" y1="-120" x2="80" y2="120"
+            class="line path-delight draw" style="--len:240; --dur:0.8s" stroke-width="2.25"/>
+      <line id="i12-pm" x1="80" y1="120" x2="80" y2="0"
+            class="line path-delight draw" style="--len:120; --dur:0.7s" stroke-width="2.25"/>
+      <!-- right-angle box at M generated programmatically by scripts/figures/i12-perp-off.js -->
+    </g>
+
+    <!-- labels -->
+    <g id="labels">
+      <circle class="point" cx="80" cy="120" r="3"/><text x="86" y="120" class="label-text">P</text>
+      <circle id="i12-X" class="point fade" cx="-10" cy="0" r="3"/><text id="i12-Xt" x="-4" y="-10" class="label-text fade">X</text>
+      <circle id="i12-Y" class="point fade" cx="170" cy="0" r="3"/><text id="i12-Yt" x="176" y="-10" class="label-text fade">Y</text>
+      <circle id="i12-M" class="point fade" cx="80" cy="0" r="3"/><text id="i12-Mt" x="86" y="10" class="label-text fade">M</text>
+      <!-- U,V are implicit ends of bisector; not labeled to keep the figure clean -->
+    </g>
+  </svg>
+
+</figure>
+</section>

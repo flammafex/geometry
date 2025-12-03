@@ -1,0 +1,107 @@
+<section>
+<h3 id="1.1" class="subchapter">Equilateral Triangle</h3>
+  <blockquote>
+    An equilateral triangle can be constructed on any given finite straight line.
+  </blockquote>
+  <p>
+    <span class="verse-ref">Elements</span><span class="verse-num-ref">I.1</span>
+    Take a stick and mark its ends <strong>A</strong> and <strong>B</strong>. With your
+    compass on <strong>A</strong>, swing a circle through <strong>B</strong>. Then with
+    your compass on <strong>B</strong>, swing a circle through <strong>A</strong>.
+    Where the circles meet, call that point <strong>C</strong>. Join <strong>A</strong> to
+    <strong>C</strong> and <strong>B</strong> to <strong>C</strong>. You’ve made a triangle with all three
+    sides equal.
+  </p>
+  <h4>Proof</h4>
+  <p>
+    By the definition of a circle, every point on <em>c</em><sub>A</sub> is at distance
+    <code>|AB|</code> from <strong>A</strong>; in particular, <code>|AC| = |AB|</code>.
+    Likewise, every point on <em>c</em><sub>B</sub> is at distance <code>|AB|</code> from
+    <strong>B</strong>; in particular, <code>|BC| = |AB|</code>. Hence
+    <code>|AC| = |BC| = |AB|</code>, so the sides of <strong>△ABC</strong> are equal and
+    the triangle is equilateral. Q.E.D.
+  </p>
+  <h4>Construction</h4>
+  <ol>
+    <li>Let <strong>AB</strong> be the given segment.</li>
+    <li>Draw circle <em>c</em><sub>A</sub> centered at <strong>A</strong> with radius <code>|AB|</code>.</li>
+    <li>Draw circle <em>c</em><sub>B</sub> centered at <strong>B</strong> with radius <code>|AB|</code>.</li>
+    <li>Let <strong>C</strong> be a point of intersection: <code>C = c<sub>A</sub> ∩ c<sub>B</sub></code>, with <code>C ≠ A,B</code>.</li>
+    <li>Join <strong>AC</strong> and <strong>BC</strong> to form <strong>△ABC</strong>.</li>
+  </ol>
+ </section>
+<!-->
+	<section>
+<figure class="triangle-container" data-figure="i1-equilateral" aria-labelledby="i1-caption">
+  <figcaption id="i1-caption">
+    <h3>Equilateral triangle on AB.</h3>
+    Step: AB → circle(A) → circle(B) → C → AC &amp; BC.
+  </figcaption>
+  <div class="heptagon-button-container" aria-label="Animation controls">
+    <button class="clearButton" data-role="step"  type="button">Step</button>
+    <button class="clearButton" data-role="reset" type="button">Reset</button>
+  </div>
+  <svg id="i1-equilateral-svg"
+       viewBox="-280 -230 760 480"
+       role="img"
+       aria-labelledby="i1-title i1-desc"
+       style="max-width:100%;height:auto">
+    <title id="i1-title">Prop. I.1 — Equilateral triangle on a given finite straight line</title>
+    <desc id="i1-desc">Given AB, circles centered at A and B with radius |AB| intersect at C. Joining AC and BC yields △ABC with |AB| = |BC| = |CA|.</desc>
+
+    <!-- 1) CONSTRUCTION (bottom layer) -->
+    <g id="construction" aria-label="Construction circles">
+      <circle id="circleA" cx="0"   cy="0" r="200"
+              class="line path-default draw no-fill"
+              style="--len:1256.64; --dur:1.1s" stroke-width="1.4"
+              stroke-dasharray="1256.64" />
+      <circle id="circleB" cx="200" cy="0" r="200"
+              class="line path-default draw no-fill"
+              style="--len:1256.64; --dur:1.1s" stroke-width="1.4"
+              stroke-dasharray="1256.64" />
+    </g>
+
+    <!-- 2) GIVEN/RESULT LINES (middle) -->
+    <g id="given">
+      <line id="ab" x1="0" y1="0" x2="200" y2="0"
+            class="line path-delight draw" style="--len:200; --dur:0.8s"
+            stroke-width="2"/>
+    </g>
+
+    <g id="result">
+      <line id="ac" x1="0" y1="0" x2="100" y2="173.205"
+            class="line path-delight draw" style="--len:200; --dur:0.8s" stroke-width="2.25"/>
+      <line id="bc" x1="200" y1="0" x2="100" y2="173.205"
+            class="line path-delight draw" style="--len:200; --dur:0.8s" stroke-width="2.25"/>
+    </g>
+
+    <!-- 3) COMPASS ARMS (only visible during sweep) -->
+    <g id="compasses">
+      <!-- arm about A (start hidden) -->
+      <g id="compassA" class="gone">
+        <line x1="0" y1="0" x2="200" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="200" cy="0" class="point compass-dot"/>
+        <animateTransform id="spinA"
+          attributeName="transform" type="rotate"
+          from="0 0 0" to="360 0 0" dur="1.1s" fill="freeze" begin="indefinite"/>
+      </g>
+      <!-- arm about B (start hidden) -->
+      <g id="compassB" class="gone">
+        <line x1="200" y1="0" x2="400" y2="0" class="line path-default" stroke-width="1"/>
+        <circle cx="400" cy="0" class="point compass-dot"/>
+        <animateTransform id="spinB"
+          attributeName="transform" type="rotate"
+          from="0 200 0" to="360 200 0" dur="1.1s" fill="freeze" begin="indefinite"/>
+      </g>
+    </g>
+
+    <!-- 4) LABELS & POINTS (top layer) -->
+    <g id="labels" aria-label="Points and labels">
+      <circle id="A" class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+      <circle id="B" class="point" cx="200" cy="0" r="3"/><text x="206" y="-10" class="label-text">B</text>
+      <circle id="C" class="point fade" cx="100" cy="173.205" r="3"/>
+      <text id="CLabel" x="100" y="190" class="label-text fade">C</text>
+    </g>
+  </svg>
+</figure>
+</section>

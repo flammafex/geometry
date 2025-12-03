@@ -23,25 +23,20 @@ WSOG.register('i26-asa', function(fig){
   const edges    = q('#edges');
 
   // Create programmatic angle arc at B
-  const arcBGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  arcBGroup.setAttribute('id', 'arcB26-generated');
-  arcBGroup.setAttribute('class', 'draw');
-  edges.appendChild(arcBGroup);
-
-  const arcBPath = WSOG.helpers.createAngleArc(
-    arcBGroup,
+  const arcB = WSOG.helpers.createAngleArc(
+    edges,
     B.x, B.y,  // vertex at B
     A.x, A.y,  // point on ray BA
     C.x, C.y,  // point on ray BC
     20,        // radius
-    { strokeWidth: 1, className: 'line path-default no-fill' }
+    { strokeWidth: 1, className: 'line path-default no-fill draw' }
   );
+  arcB.setAttribute('id', 'arcB26-generated');
 
   // Set up animation for arc B
-  const arcBLength = WSOG.helpers.getPathLength(arcBPath.getAttribute('d'));
-  arcBPath.style.setProperty('--len', arcBLength);
-  arcBPath.style.setProperty('--dur', '0.6s');
-  arcBPath.classList.add('draw');
+  const arcBLength = WSOG.helpers.getPathLength(arcB.getAttribute('d'));
+  arcB.style.setProperty('--len', arcBLength);
+  arcB.style.setProperty('--dur', '0.6s');
 
   const btnStep = q('#i26-step');
   const btnReset= q('#i26-reset');
@@ -51,7 +46,7 @@ WSOG.register('i26-asa', function(fig){
 
   function reset(){
     step = 0;
-    [ab, ac, bc, arcA, arcBGroup].forEach(el => el.classList.remove('reveal'));
+    [ab, ac, bc, arcA, arcB].forEach(el => el.classList.remove('reveal'));
     tick.classList.add('fade');
 
     if (hasMoved) { try { back.beginElement(); } catch(e){} }
@@ -66,7 +61,7 @@ WSOG.register('i26-asa', function(fig){
   function doStep(){
     switch(step){
       case 0: // draw △ABC
-        [ab, ac, bc, arcA, arcBGroup].forEach(el => el.classList.add('reveal'));
+        [ab, ac, bc, arcA, arcB].forEach(el => el.classList.add('reveal'));
         break;
       case 1: // show two equal angles + one equal side
         tick.classList.remove('fade');

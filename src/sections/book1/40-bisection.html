@@ -1,0 +1,287 @@
+<section>
+<h3 id="1.4" class="subchapter">Bisection</h3>
+<h4 id="1.4-seg">Segment Bisection</h4>
+<blockquote>
+  Any finite straight line can be cut into two equal parts.
+</blockquote>
+<p>
+  <span class="verse-ref">Elements</span><span class="verse-num-ref">I.10</span>
+  Take a stick <strong>AB</strong>. Swing equal-radius arcs from <strong>A</strong> and <strong>B</strong> that cross above and below the stick. The line through the crossings meets <strong>AB</strong> at its midpoint <strong>M</strong>; it’s also ⟂ to <strong>AB</strong>.
+</p>
+<h5>Proof</h5>
+<p>
+  Let circles with the same radius meet at <strong>X</strong> and <strong>Y</strong>. Then <code>|XA| = |XB|</code> and <code>|YA| = |YB|</code>. In △<strong>XAB</strong> and △<strong>YAB</strong>, equal radii give two equal sides; the base angles at A and B match, so <strong>XY</strong> is the perpendicular bisector of <strong>AB</strong>. Hence the intersection <strong>M = XY ∩ AB</strong> satisfies <code>|AM| = |MB|</code>. Q.E.D.
+</p>
+<h4>Construction</h4>
+<ol>
+  <li>Let <strong>AB</strong> be given.</li>
+  <li>Draw circle <em>c</em><sub>A</sub> centered at <strong>A</strong> with any radius &gt; <code>|AB|/2</code>.</li>
+  <li>Draw circle <em>c</em><sub>B</sub> centered at <strong>B</strong> with the same radius.</li>
+  <li>Let <strong>X</strong>, <strong>Y</strong> be the two intersections: <code>{X,Y} = c<sub>A</sub> ∩ c<sub>B</sub></code>.</li>
+  <li>Draw the line <strong>XY</strong>; let <strong>M = XY ∩ AB</strong>. Then <code>|AM| = |MB|</code> and <strong>XY ⟂ AB</strong>.</li>
+</ol>
+<figure class="triangle-container" data-figure="i10-bisect-seg" aria-labelledby="i10-caption">
+  <figcaption id="i10-caption">
+    <h3>Bisect a segment AB.</h3>
+    Step: AB → circle(A) → circle(B) → X &amp; Y → line XY (midpoint M).
+  </figcaption>
+
+  <div class="heptagon-button-container" aria-label="Animation controls">
+    <button class="clearButton" id="i10-step" type="button">Step</button>
+    <button class="clearButton" id="i10-reset" type="button">Reset</button>
+  </div>
+
+  <!-- Coordinates: A(0,0), B(220,0); radius 150 to ensure two intersections -->
+  <svg id="i10-bisect-seg" viewBox="-152 -180 530 360" role="img"
+       aria-labelledby="i10-title i10-desc" style="max-width:100%;height:auto">
+    <title id="i10-title">Prop. I.10 — Bisect a given finite straight line</title>
+    <desc id="i10-desc">Equal-radius circles centered at A and B meet at X and Y; XY ⟂ AB and meets AB at midpoint M with |AM| = |MB|.</desc>
+
+    <!-- construction arcs -->
+    <g id="construction">
+      <circle id="i10-cA" cx="0" cy="0" r="150" class="line path-default draw no-fill" style="--len:942.48; --dur:1.0s" stroke-width="1.4"/>
+      <circle id="i10-cB" cx="220" cy="0" r="150" class="line path-default draw no-fill" style="--len:942.48; --dur:1.0s" stroke-width="1.4"/>
+    </g>
+    
+    <!-- compass arms (visible only during sweep) -->
+<g id="i10-compasses">
+  <!-- Compass centered at A (0,0); arm length = 150 -->
+  <g id="i10-compassA" class="gone">
+    <line x1="0" y1="0" x2="150" y2="0" class="line path-default" stroke-width="1"/>
+    <circle cx="150" cy="0" class="point compass-dot"/>
+    <animateTransform id="i10-spinA"
+      attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+  </g>
+  <!-- Compass centered at B (220,0); arm length = 150 -->
+  <g id="i10-compassB" class="gone">
+    <line x1="220" y1="0" x2="370" y2="0" class="line path-default" stroke-width="1"/>
+    <circle cx="370" cy="0" class="point compass-dot"/>
+    <animateTransform id="i10-spinB"
+      attributeName="transform" type="rotate"
+      from="0 220 0" to="360 220 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+  </g>
+</g>
+
+
+    <!-- given/result lines -->
+    <g id="given">
+      <line id="i10-ab" x1="0" y1="0" x2="220" y2="0" class="line path-delight draw" style="--len:220; --dur:0.7s" stroke-width="2"/>
+    </g>
+
+    <g id="result">
+      <line id="i10-xy" x1="110" y1="-101.421" x2="110" y2="101.421" class="line path-delight draw" style="--len:282.84; --dur:0.8s" stroke-width="2.25"/>
+      <!-- mid tick marks on AB -->
+      <line id="i10-midtick1" x1="110" y1="-8" x2="110" y2="8" class="line path-default tick fade" stroke-width="2"/>
+    </g>
+    
+    
+
+    <!-- labels -->
+    <g id="labels">
+      <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+      <circle class="point" cx="220" cy="0" r="3"/><text x="226" y="-10" class="label-text">B</text>
+
+      <circle id="i10-X" class="point fade" cx="110" cy="-101.421" r="3"/><text id="i10-Xt" x="118" y="-101.421" class="label-text fade">X</text>
+      <circle id="i10-Y" class="point fade" cx="110" cy="101.421"  r="3"/><text id="i10-Yt" x="118" y="101.421" class="label-text fade">Y</text>
+
+      <circle id="i10-M" class="point fade" cx="110" cy="0" r="3"/><text id="i10-Mt" x="116" y="-10" class="label-text fade">M</text>
+    </g>
+  </svg>
+
+
+</figure>
+<h4 id="1.4-ang">Angle Bisection</h4>
+<blockquote>
+  Any rectilinear angle can be cut into two equal angles.
+</blockquote>
+<p>
+  <span class="verse-ref">Elements</span><span class="verse-num-ref">I.9</span>
+  From the angle’s vertex <strong>A</strong>, swing a circle to mark points <strong>E</strong> on <strong>AB</strong> and <strong>F</strong> on <strong>AC</strong>. With the same opening, swing arcs from <strong>E</strong> and <strong>F</strong> to meet at <strong>D</strong>. The ray <strong>AD</strong> bisects the angle.
+</p>
+<h5>Proof</h5>
+<p>
+  With <code>|AE| = |AF|</code> and equal radii from <strong>E</strong> and <strong>F</strong>, triangles △<strong>AED</strong> and △<strong>AFD</strong> have two sides equal and the included side <code>AD</code> common, so by SAS they are congruent. Hence <code>∠EAD = ∠DAF</code>. Q.E.D.
+</p>
+<h4>Construction</h4>
+<ol>
+  <li>Given rays <strong>AB</strong> and <strong>AC</strong> with common endpoint <strong>A</strong>.</li>
+  <li>Draw circle <em>c</em><sub>A</sub> centered at <strong>A</strong> to meet the rays at <strong>E</strong> (on <strong>AB</strong>) and <strong>F</strong> (on <strong>AC</strong>).</li>
+  <li>With the same radius, draw circles <em>c</em><sub>E</sub> and <em>c</em><sub>F</sub>.</li>
+  <li>Let <strong>D</strong> be an intersection of <em>c</em><sub>E</sub> and <em>c</em><sub>F</sub> inside the angle.</li>
+  <li>Draw <strong>AD</strong>; then <code>∠EAD = ∠DAC</code>.</li>
+</ol>
+<figure class="triangle-container" data-figure="i9-bisect-ang" aria-labelledby="i9-caption">
+  <figcaption id="i9-caption">
+    <h3>Bisect an angle ∠BAC.</h3>
+    Step: rays AB &amp; AC → circle(A) hits E,F → circle(E) &amp; circle(F) → point D → draw AD.
+  </figcaption>
+
+  <div class="heptagon-button-container" aria-label="Animation controls">
+    <button class="clearButton" id="i9-step" type="button">Step</button>
+    <button class="clearButton" id="i9-reset" type="button">Reset</button>
+  </div>
+
+  <!-- Coordinates: A(0,0); B along 0°, C along 60° -->
+  <svg id="i9-bisect-ang" viewBox="-150 -150 450 400" role="img"
+       aria-labelledby="i9-title i9-desc" style="max-width:100%;height:auto">
+    <title id="i9-title">Prop. I.9 — Bisect a given angle</title>
+    <desc id="i9-desc">Circle centered at A meets rays AB and AC at E and F; equal-radius circles from E and F meet at D; AD bisects ∠BAC.</desc>
+
+    <!-- base rays -->
+    <g id="given">
+      <line id="i9-ab" x1="0" y1="0" x2="260" y2="0" class="line path-delight draw" style="--len:260; --dur:0.6s" stroke-width="2"/>
+      <line id="i9-ac" x1="0" y1="0" x2="130" y2="225.166" class="line path-delight draw" style="--len:260; --dur:0.6s" stroke-width="2"/>
+    </g>
+
+    <!-- construction circles -->
+    <g id="construction">
+      <circle id="i9-cA" cx="0" cy="0" r="120" class="line path-default draw no-fill" style="--len:753.98; --dur:1.0s" stroke-width="1.2"/>
+      <circle id="i9-cE" cx="120" cy="0" r="120" class="line path-default draw no-fill" style="--len:753.98; --dur:1.0s" stroke-width="1.2"/>
+      <circle id="i9-cF" cx="60" cy="103.923" r="120" class="line path-default draw no-fill" style="--len:753.98; --dur:1.0s" stroke-width="1.2"/>
+    </g>
+    
+    <!-- compass arms (visible only during sweep) -->
+<g id="i9-compasses">
+  <!-- Compass centered at A (0,0); arm length = 120 -->
+  <g id="i9-compassA" class="gone">
+    <line x1="0" y1="0" x2="120" y2="0" class="line path-default" stroke-width="1"/>
+    <circle cx="120" cy="0" class="point compass-dot"/>
+    <animateTransform id="i9-spinA"
+      attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+  </g>
+  <!-- Compass centered at E (120,0); arm length = 120 -->
+  <g id="i9-compassE" class="gone">
+    <line x1="120" y1="0" x2="240" y2="0" class="line path-default" stroke-width="1"/>
+    <circle cx="240" cy="0" class="point compass-dot"/>
+    <animateTransform id="i9-spinE"
+      attributeName="transform" type="rotate"
+      from="0 120 0" to="360 120 0" dur="1.0s" fill="freeze" begin="indefinite"/>
+  </g>
+  <!-- Compass centered at F (60,103.923); arm length = 120 -->
+  <g id="i9-compassF" class="gone">
+    <line x1="60" y1="103.923" x2="180" y2="103.923" class="line path-default" stroke-width="1"/>
+    <circle cx="180" cy="103.923" class="point compass-dot"/>
+    <animateTransform id="i9-spinF"
+      attributeName="transform" type="rotate"
+      from="0 60 103.923" to="360 60 103.923" dur="1.0s" fill="freeze" begin="indefinite"/>
+  </g>
+</g>
+
+	
+   <!-- result -->
+<g id="result">
+  <!-- AD: the bisector -->
+<!-- AD: the bisector (to point D at 180,103.884) -->
+<line id="i9-ad"
+      x1="0" y1="0" x2="180" y2="103.884"
+      class="line path-delight draw"
+      style="--len:207.83; --dur:0.7s"
+      stroke-width="2.25"
+      stroke-dasharray="207.83"/>
+
+  <!-- small angle arcs for equality -->
+<!-- small angle arcs for equality (each spans 30°) -->
+<path id="i9-arc1"
+      d="M20,0 A20,20 0 0 1 17.321,10"
+      class="line path-default draw no-fill"
+      style="--len:10.472; --dur:0.5s"
+      stroke-dasharray="10.472"/>
+
+<path id="i9-arc2"
+      d="M17.321,10 A20,20 0 0 1 10,17.321"
+      class="line path-default draw no-fill"
+      style="--len:10.472; --dur:0.5s"
+      stroke-dasharray="10.472"/>
+
+</g>
+
+
+    <!-- labels -->
+    <g id="labels">
+      <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+      <circle class="point" cx="260" cy="0" r="3"/><text x="266" y="-10" class="label-text">B</text>
+      <circle class="point" cx="130" cy="225.166" r="3"/><text x="136" y="225.166" class="label-text">C</text>
+
+      <circle id="i9-E" class="point fade" cx="120" cy="0" r="3"/><text id="i9-Et" x="126" y="-10" class="label-text fade">E</text>
+      <circle id="i9-F" class="point fade" cx="60" cy="103.923" r="3"/><text id="i9-Ft" x="66" y="103.923" class="label-text fade">F</text>
+
+      <circle id="i9-D" class="point fade" cx="180" cy="103.884" r="3"/><text id="i9-Dt" x="186" y="103.884" class="label-text fade">D</text>
+    </g>
+  </svg>
+
+  <script>
+  (function(){
+    const ab = document.getElementById('i9-ab');
+    const ac = document.getElementById('i9-ac');
+    const cA = document.getElementById('i9-cA');
+    const cE = document.getElementById('i9-cE');
+    const cF = document.getElementById('i9-cF');
+
+    const E = document.getElementById('i9-E'), Et = document.getElementById('i9-Et');
+    const F = document.getElementById('i9-F'), Ft = document.getElementById('i9-Ft');
+    const D = document.getElementById('i9-D'), Dt = document.getElementById('i9-Dt');
+
+    const ad = document.getElementById('i9-ad');
+    const arc1 = document.getElementById('i9-arc1');
+    const arc2 = document.getElementById('i9-arc2');
+
+    // NEW: compass refs
+    const compA = document.getElementById('i9-compassA');
+    const compE = document.getElementById('i9-compassE');
+    const compF = document.getElementById('i9-compassF');
+    const spinA = document.getElementById('i9-spinA');
+    const spinE = document.getElementById('i9-spinE');
+    const spinF = document.getElementById('i9-spinF');
+    const SWEEP_MS = 1000; // must match dur="1.0s"
+
+    const stepBtn = document.getElementById('i9-step');
+    const resetBtn= document.getElementById('i9-reset');
+
+    let step = 0;
+
+    // NEW: helpers
+    function hideCompass(comp){
+      comp.classList.add('fade');
+      setTimeout(() => { comp.classList.remove('fade'); comp.classList.add('gone'); }, 160);
+    }
+    function showAndSweep(comp, spin, circle){
+      comp.classList.remove('gone');
+      void comp.offsetWidth;
+      circle.classList.add('reveal');
+      try { spin.beginElement(); } catch(e){}
+      setTimeout(() => hideCompass(comp), SWEEP_MS);
+    }
+
+    function reset(){
+      step = 0;
+      [ab, ac, cA, cE, cF, ad, arc1, arc2].forEach(el => el.classList.remove('reveal'));
+      [E,Et,F,Ft,D,Dt,arc1,arc2].forEach(el => { el.classList.add('fade'); el.classList.remove('show'); });
+      // NEW: hide compasses
+      [compA, compE, compF].forEach(el => { el.classList.add('gone'); el.classList.remove('fade'); });
+      try { spinA.endElement(); spinE.endElement(); spinF.endElement(); } catch(e){}
+    }
+
+    function doStep(){
+      switch(step){
+        case 0: [ab, ac].forEach(el => el.classList.add('reveal')); break;                 // rays
+        case 1: // circle at A (mark E,F appear)
+          showAndSweep(compA, spinA, cA);
+          [E,Et,F,Ft].forEach(el=>{el.classList.remove('fade'); el.classList.add('show');});
+          break;
+        case 2: showAndSweep(compE, spinE, cE); break;                                     // circle E (+ sweep)
+        case 3: showAndSweep(compF, spinF, cF); [D,Dt].forEach(el=>{el.classList.remove('fade'); el.classList.add('show');}); break; // circle F (+ sweep) + D
+        case 4: ad.classList.add('reveal'); [arc1,arc2].forEach(el=>el.classList.add('reveal')); break; 
+        default: return;
+      }
+      step++;
+    }
+
+    stepBtn.addEventListener('click', doStep);
+    resetBtn.addEventListener('click', reset);
+    reset();
+  })();
+</script>
+</figure>
+</section>

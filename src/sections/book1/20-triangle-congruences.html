@@ -1,0 +1,249 @@
+<section>
+<h3 id="1.2">Triangle Congruences</h3>
+  <h4 id="1.2-sas">Side–Angle–Side (SAS)</h4>
+  <blockquote>
+    If two triangles have two pairs of corresponding sides equal and the included angles equal, then the triangles are congruent.
+  </blockquote>
+  <p>
+    <span class="verse-ref">Elements</span><span class="verse-num-ref">I.4</span>
+    Make a triangle by hinging two sticks at a fixed angle. If a second triangle uses sticks of the same lengths and the same hinge angle, the two triangles match exactly when you lay one on top of the other.
+  </p>
+  <h5>Proof</h5>
+  <p>
+    Let △ABC and △DEF satisfy <code>|AB| = |DE|</code>, <code>|AC| = |DF|</code>, and <code>∠BAC = ∠EDF</code>. Superpose △ABC onto △DEF by placing <strong>A</strong> onto <strong>D</strong> and aligning <strong>AB</strong> with <strong>DE</strong>. Because the included angles at <strong>A</strong> and <strong>D</strong> are equal, ray <strong>AC</strong> coincides with ray <strong>DF</strong>, and since <code>|AC| = |DF|</code>, point <strong>C</strong> falls on <strong>F</strong>. Thus △ABC and △DEF coincide: <code>△ABC ≅ △DEF</code>. Corresponding bases and angles are equal. Q.E.D.
+  </p>
+  <figure class="triangle-container" data-figure="i4-sas" aria-labelledby="i4-caption">
+    <figcaption id="i4-caption">
+      <h3>Triangle Congruence (SAS)</h3>
+      Step: △ABC → △DEF (givens) → overlay A→D → conclude △ABC ≅ △DEF.
+    </figcaption>
+    <div class="heptagon-button-container" aria-label="Animation controls" aria-controls="i4-sas">
+      <button class="clearButton" id="i4-step"  type="button">Step</button>
+      <button class="clearButton" id="i4-reset" type="button">Reset</button>
+    </div>
+    <!-- Coordinates: A(0,0), B(180,0), C(102.85,122.56)
+         D(320,0), E(500,0), F(422.85,122.56) — same lengths & included angle -->
+    <svg id="i4-sas" viewBox="-40 -30 600 170" role="img"
+         aria-labelledby="i4-title i4-desc" style="max-width:100%;height:auto">
+      <title id="i4-title">Prop. I.4 — Side–Angle–Side Triangle Congruence</title>
+      <desc id="i4-desc">Two triangles with two sides and the included angle equal are congruent; see overlay A→D aligning AB with DE and AC with DF.</desc>
+      <!-- 1) Second triangle (△DEF) drawn first (background, gray) -->
+      <g id="triDEF" opacity="0.18">
+        <line x1="320" y1="0" x2="500" y2="0" class="line path-default" stroke-width="2"/>
+        <line x1="320" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
+        <line x1="500" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
+        <!-- angle arc and tick marks generated programmatically -->
+      </g>
+      <!-- 2) First triangle (△ABC) to be animated/overlaid (blue) -->
+      <g id="triABC">
+        <g id="triABC-edges">
+          <line id="ab4" x1="0" y1="0" x2="180" y2="0"
+                class="line path-delight draw" style="--len:180; --dur:0.6s" stroke-width="2"/>
+          <line id="ac4" x1="0" y1="0" x2="102.85" y2="122.56"
+                class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
+          <line id="bc4" x1="180" y1="0" x2="102.85" y2="122.56"
+                class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
+          <!-- angle arc and tick marks generated programmatically -->
+        </g>
+        <!-- label group so they stay on top of edges -->
+        <g id="labels" class="show">
+          <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+          <circle class="point" cx="180" cy="0" r="3"/><text x="186" y="-10" class="label-text">B</text>
+          <circle class="point" cx="102.85" cy="122.56" r="3"/><text x="110" y="122.56" class="label-text">C</text>
+        </g>
+        <!-- translation to overlay A→D -->
+        <animateTransform id="i4-move"
+          attributeName="transform" type="translate"
+          from="0 0" to="320 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+          <animateTransform id="i4-return"
+          attributeName="transform" type="translate"
+          from="320 0" to="0 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+      </g>
+      <!-- D,E,F labels (kept subtle in background) -->
+      <g id="labelsDEF" opacity="0.6">
+        <circle class="point" cx="320" cy="0" r="3"/><text x="312" y="-10" class="label-text">D</text>
+        <circle class="point" cx="500" cy="0" r="3"/><text x="506" y="-10" class="label-text">E</text>
+        <circle class="point" cx="422.85" cy="122.56" r="3"/><text x="430" y="122.56" class="label-text">F</text>
+      </g>
+    </svg>
+  </figure>
+  <h4 id="1.2-sss">Side–Side–Side (SSS)</h4>
+  <blockquote>
+    If two triangles have all three pairs of corresponding sides equal, then the triangles are congruent.
+  </blockquote>
+  <p>
+    <span class="verse-ref">Elements</span><span class="verse-num-ref">I.8</span>
+    Build two triangles from the same three stick lengths. There’s only one way (up to flipping) to join them: the triangles match.
+  </p>
+  <h5>Proof</h5>
+  <p>
+    Let △ABC and △DEF satisfy <code>|AB| = |DE|</code>, <code>|BC| = |EF|</code>, <code>|CA| = |FD|</code>. Place <strong>A</strong> on <strong>D</strong> with <strong>AB</strong> along <strong>DE</strong>. The locus of points at distance <code>|CA|</code> from <strong>A</strong> is a circle; likewise the locus at distance <code>|FD|</code> from <strong>D</strong> is the same radius circle. The equalities force the third vertex to the same intersection point on the same side of the base, so <strong>C</strong> falls on <strong>F</strong>. Hence <code>△ABC ≅ △DEF</code>. Corresponding angles are equal. Q.E.D.
+  </p>
+  <!-- ——————————————————————————————————— -->
+<!-- I.8 — Side–Side–Side (SSS) -->
+<!-- ——————————————————————————————————— -->
+<figure class="triangle-container" data-figure="i8-sss" aria-labelledby="i8-caption">
+  <figcaption id="i8-caption">
+    <h3>Triangle Congruence (SSS)</h3>
+    Step: draw △ABC → mark equal sides → overlay A→D → conclude △ABC ≅ △DEF.
+  </figcaption>
+
+  <div class="heptagon-button-container" aria-label="Animation controls" aria-controls="i8-sss">
+    <button class="clearButton" id="i8-step"  type="button">Step</button>
+    <button class="clearButton" id="i8-reset" type="button">Reset</button>
+  </div>
+
+  <!-- Coordinates: A(0,0), B(180,0), C(102.85,122.56)
+       D(320,0), E(500,0), F(422.85,122.56) (same lengths & orientation) -->
+  <svg id="i8-sss" viewBox="-40 -30 600 170"
+       role="img" aria-labelledby="i8-title i8-desc"
+       style="max-width:100%;height:auto">
+    <title id="i8-title">Side–Side–Side Triangle Congruence</title>
+    <desc id="i8-desc">Two triangles with all three corresponding sides equal are congruent; overlay △ABC onto △DEF to see coincidence.</desc>
+
+    <!-- Background triangle △DEF (light gray) -->
+    <g id="triDEF" opacity="0.18">
+      <line x1="320" y1="0"   x2="500" y2="0"    class="line path-default" stroke-width="2"/>
+      <line x1="320" y1="0"   x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
+      <line x1="500" y1="0"   x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
+      <!-- tick marks for DE (1), DF (2), EF (3) generated programmatically -->
+    </g>
+
+    <!-- Foreground triangle △ABC (blue) -->
+    <g id="triABC">
+      <g id="triABC-edges">
+        <line id="ab8" x1="0" y1="0" x2="180" y2="0"
+              class="line path-delight draw" style="--len:180; --dur:0.6s" stroke-width="2"/>
+        <line id="ac8" x1="0" y1="0" x2="102.85" y2="122.56"
+              class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
+        <line id="bc8" x1="180" y1="0" x2="102.85" y2="122.56"
+              class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
+
+        <!-- tick marks for AB (1), AC (2), BC (3) generated programmatically -->
+      </g>
+
+      <!-- labels on top -->
+      <g id="labels" class="show">
+        <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+        <circle class="point" cx="180" cy="0" r="3"/><text x="186" y="-10" class="label-text">B</text>
+        <circle class="point" cx="102.85" cy="122.56" r="3"/><text x="110" y="122.56" class="label-text">C</text>
+      </g>
+
+      <!-- translate overlay: A→D (320,0) -->
+      <animateTransform id="i8-move"
+        attributeName="transform" type="translate"
+        from="0 0" to="320 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+      <animateTransform id="i8-return"
+        attributeName="transform" type="translate"
+        from="320 0" to="0 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+    </g>
+
+    <!-- D,E,F labels (subtle) -->
+    <g id="labelsDEF" opacity="0.6">
+      <circle class="point" cx="320" cy="0" r="3"/><text x="312" y="-10" class="label-text">D</text>
+      <circle class="point" cx="500" cy="0" r="3"/><text x="506" y="-10" class="label-text">E</text>
+      <circle class="point" cx="422.85" cy="122.56" r="3"/><text x="430" y="122.56" class="label-text">F</text>
+    </g>
+  </svg>
+
+</figure>
+
+  <h4 id="1.2-asa">Angle–Side–Angle (ASA) and AAS</h4>
+  <blockquote>
+    If two triangles have two angles equal respectively and one corresponding side equal (either the included side or a side opposite one of the equal angles), then the triangles are congruent.
+  </blockquote>
+  <p>
+    <span class="verse-ref">Elements</span><span class="verse-num-ref">I.26</span>
+    Hinge two angles the same way and make one side the same; the third vertex lands in only one place, so the triangles match.
+  </p>
+  <h5>Proof</h5>
+  <p>
+    Let △ABC and △DEF satisfy <code>∠A = ∠D</code>, <code>∠B = ∠E</code> and either <code>|AB| = |DE|</code> (adjacent case) or <code>|AC| = |DF|</code> (opposite case). Equal two angles force the third angles equal. In the adjacent case, the included angle between the given sides is equal; Side-Angle-Side applies. In the opposite case, placing the equal side and opening the equal adjacent angles determines the remaining side uniquely, yielding superposition of the triangles. Thus <code>△ABC ≅ △DEF</code>. Q.E.D.
+  </p>
+<!-- ——————————————————————————————————— -->
+<!-- I.26 — Angle–Side–Angle / AAS (ASA/AAS) -->
+<!-- ——————————————————————————————————— -->
+<figure class="triangle-container" data-figure="i26-asa" aria-labelledby="i26-caption">
+  <figcaption id="i26-caption">
+    <h3>Triangle Congruence (ASA / AAS)</h3>
+    Step: draw △ABC → mark two equal angles + one side → rotate about A to match ∠A→∠D → translate A→D → conclude △ABC ≅ △DEF.
+  </figcaption>
+
+  <div class="heptagon-button-container" aria-label="Animation controls" aria-controls="i26-asa">
+    <button class="clearButton" id="i26-step"  type="button">Step</button>
+    <button class="clearButton" id="i26-reset" type="button">Reset</button>
+  </div>
+
+  <!-- △ABC: A(0,0), B(160,0), C(91.92,77.14)  (∠A ≈ 40°)
+       △DEF = rotate(20°) of △ABC, then translate by (320,0):
+       D(320,0), E(470.24,54.68), F(380.05,103.73) -->
+  <svg id="i26-asa" viewBox="-40 -30 610 190" role="img"
+       aria-labelledby="i26-title i26-desc"
+       style="max-width:100%;height:auto">
+    <title id="i26-title">Prop. I.26 — Angle–Side–Angle / AAS Triangle Congruence</title>
+    <desc id="i26-desc">Two triangles with two equal angles and a corresponding side equal (included or opposite) are congruent; rotate about A to match ∠A with ∠D, then translate A to D to superpose.</desc>
+
+    <!-- Background triangle △DEF (light gray) -->
+    <g id="triDEF" opacity="0.18">
+      <line x1="320" y1="0" x2="470.24" y2="54.68" class="line path-default" stroke-width="2"/>
+      <line x1="320" y1="0" x2="380.05" y2="103.73" class="line path-default" stroke-width="2"/>
+      <line x1="470.24" y1="54.68" x2="380.05" y2="103.73" class="line path-default" stroke-width="2"/>
+      <!-- angle arcs and tick marks generated programmatically by scripts/figures/i26-asa.js -->
+    </g>
+
+    <!-- Foreground triangle △ABC (blue), nested groups for rotate then translate -->
+    <g id="triABC">
+      <g id="triABC-rot">
+        <g id="edges">
+          <line id="ab26" x1="0" y1="0" x2="160" y2="0"
+                class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
+          <line id="ac26" x1="0" y1="0" x2="91.92" y2="77.14"
+                class="line path-delight draw" style="--len:148; --dur:0.6s" stroke-width="2"/>
+          <line id="bc26" x1="160" y1="0" x2="91.92" y2="77.14"
+                class="line path-delight draw" style="--len:138; --dur:0.6s" stroke-width="2"/>
+
+          <!-- angle arcs at A and B (blue) -->
+          <!-- ∠A ≈ 40°: arc from (20,0) to rotated end -->
+          <path id="arcA26" d="M20,0 A20,20 0 0 1 15.32,12.86"
+                class="line path-default draw no-fill" style="--len:31.4; --dur:0.6s" stroke-width="1"/>
+          <!-- ∠B arc generated programmatically by scripts/figures/i26-asa.js -->
+
+          <!-- tick on AB (equal to DE) -->
+          <line id="tickAB26" x1="80" y1="-6" x2="80" y2="6" class="line path-default tick fade" stroke-width="2"/>
+        </g>
+
+        <!-- labels that rotate with the triangle -->
+        <g id="labels" class="show">
+          <circle class="point" cx="0" cy="0" r="3"/><text x="-10" y="-10" class="label-text">A</text>
+          <circle class="point" cx="160" cy="0" r="3"/><text x="166" y="-10" class="label-text">B</text>
+          <circle class="point" cx="91.92" cy="77.14" r="3"/><text x="98" y="77.14" class="label-text">C</text>
+        </g>
+
+        <!-- rotate about A (0,0): 0° -> 20°, then 20° -> 0° on reset -->
+        <animateTransform id="i26-rot"
+          attributeName="transform" type="rotate"
+          from="0 0 0" to="20 0 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+        <animateTransform id="i26-rot-return"
+          attributeName="transform" type="rotate"
+          from="20 0 0" to="0 0 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+      </g>
+
+      <!-- translate A→D: (0,0) -> (320,0), with paired return -->
+      <animateTransform id="i26-move"
+        attributeName="transform" type="translate"
+        from="0 0" to="320 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+      <animateTransform id="i26-return"
+        attributeName="transform" type="translate"
+        from="320 0" to="0 0" dur="0.7s" fill="freeze" begin="indefinite"/>
+    </g>
+
+    <!-- D,E,F labels (top layer but light) -->
+    <g id="labelsDEF" opacity="0.6">
+      <circle class="point" cx="320" cy="0" r="3"/><text x="312" y="-10" class="label-text">D</text>
+      <circle class="point" cx="470.24" cy="54.68" r="3"/><text x="476" y="54.68" class="label-text">E</text>
+      <circle class="point" cx="380.05" cy="103.73" r="3"/><text x="386" y="103.73" class="label-text">F</text>
+    </g>
+  </svg>
+
+</figure>
+</section>

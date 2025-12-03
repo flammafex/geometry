@@ -25,6 +25,7 @@ WSOG.register('i26-asa', function(fig){
   // Create programmatic angle arc at B
   const arcBGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   arcBGroup.setAttribute('id', 'arcB26-generated');
+  arcBGroup.setAttribute('class', 'draw');
   edges.appendChild(arcBGroup);
 
   const arcBPath = WSOG.helpers.createAngleArc(

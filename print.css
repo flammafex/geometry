@@ -1,0 +1,98 @@
+/* Consolidated print.css */
+
+@media print {
+  /* assuming your chapters live in <section id="chapter‑…"> */
+  section[id^="chapter-"] {
+    break-before: page;           /* modern */
+    page-break-before: always;    /* legacy */
+    page-break-inside: avoid;
+  }
+  section[id^="chapter-"]:first-of-type {
+    /* don’t force a blank before the very first chapter */
+    break-before: auto;
+    page-break-before: auto;
+  }
+}
+
+/* 1) Hide site chrome, popovers, navs, and other non-print elements */
+aside,
+nav,
+.subtitle,
+.scripture-title,
+figure,
+.verse-tts-button,
+.verse-ref,
+.verse-num-ref,
+#floating-menu,
+#menu-toggle,
+.popover,
+.no-print {
+  display: none !important;
+}
+
+/* 3) Verse number styling */
+.verse-num-primary {
+  font-size: 13pt;
+  vertical-align: super;
+}
+
+/* 4) Images centered and sized */
+img {
+  display: block;
+  margin: auto;
+  width: 25%;
+}
+
+.logoscript {
+ color: black;
+}
+
+/* 5) Headings and author centered */
+h1 {
+  text-align: center;
+  font-size: 31pt;
+}
+
+.author, h2 {
+  text-align: center;
+  /* ensure no split across page break */
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+h2 {
+  font-size: 21pt;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 16pt;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* 6) Global print typography and margins */
+@page {
+  margin: 0.8in;
+}
+body {
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  font-size: 16pt;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* 7) Utility: hide elements marked no-print */
+.no-print {
+  display: none !important;
+}
+
+/* keep structured blocks intact in print */
+@media print {
+  ul, ol, dl, table { break-inside: avoid; page-break-inside: avoid; }
+}

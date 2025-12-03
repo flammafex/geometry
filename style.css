@@ -1,0 +1,603 @@
+/* --- 1. Root Variables (Aesthetic Light Mode) --- */
+:root {
+  /* -- Typography -- */
+  --font-serif: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --font-display: "Source Serif 4 Display", serif;
+  --font-mono: Consolas, Menlo, Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+
+  /* -- Core Colors -- */
+  --c-bg: #fbf9f3; /* A warm, parchment-like off-white for comfort */
+  --c-text: #2c2a2e; /* A soft, deep charcoal instead of harsh black */
+  --c-text-soft: #6d6a70; /* A muted, gentle gray for secondary text */
+  --c-link: #3a5c8d; /* A sophisticated, dusty indigo for links */
+  --c-link-hover: #1e3250; /* A deeper, richer indigo for hover */
+  --c-border: #e0dce5; /* A soft, warm gray for subtle borders */
+  --c-border-strong: #bfbac9; /* A more prominent, but still soft, gray */
+  --c-bg-offset: #f2f0f5; /* A slightly cooler, gentle gray for contrast */
+  --c-bg-inline-code: #e9e6ed;
+
+  /* -- Thematic Colors -- */
+  --c-king: #942939; /* A deep, regal crimson for 'Fire' */
+  --c-wisdom: #2b6a73; /* A dark, mystical teal for 'Water' */
+  --c-apocalypse: #b22222; /* Retained original for strong emphasis */
+  --c-logoscript-1: var(--c-king);
+  --c-logoscript-2: var(--c-wisdom);
+
+  /* -- UI & Other Colors -- */
+  --c-button-bg: var(--c-link);
+  --c-button-text: var(--c-bg);
+  --c-menu-border: var(--c-bg);
+  --c-menu-outline: var(--c-text);
+  --c-path-delight: var(--c-wisdom);
+  --c-path-plague: var(--c-king);
+  --c-path-default: var(--c-border-strong);
+  --c-grid-line: rgba(0, 0, 0, 0.15); /* Faint black for the grid */
+  
+  /* -- Code Block Colors -- */
+  --c-code-bg: #121212;
+  --c-code-text: #e6e6e6;
+  --c-code-border: #444;
+  --c-code-keyword: #ff79c6;
+  --c-code-function: #50fa7b;
+  --c-code-variable: #8be9fd;
+  --c-code-string: #f1fa8c;
+  --c-code-number: #bd93f9;
+  --c-code-comment: #7a7a7a;
+  --c-code-symbol: #ffb86c;
+  --c-code-blue: #6aa9ff;
+  --c-code-red: #ff5555;
+}
+
+/* --- 2. Dark Mode Overrides (Aesthetic Dark Mode) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* -- Core Colors -- */
+    --c-bg: #191c23; /* A deep, cool navy blue for the background */
+    --c-text: #d1d1d6; /* A soft, light gray for main text */
+    --c-text-soft: #888ca0; /* A muted, cool gray for secondary text */
+    --c-link: #82aaff; /* Brighter, more saturated blue for clear links */
+    --c-link-hover: #b3c5ff; /* A gentle highlight for hover */
+    --c-border: #333644; /* A subtle border that blends with the theme */
+    --c-border-strong: #4d5163; /* A clearer, more defined border */
+    --c-bg-offset: #222630; /* A slightly lighter navy for depth */
+
+    /* -- Thematic Colors -- */
+    --c-king: #ff7b8c; /* A vibrant, glowing red, like an ember */
+    --c-wisdom: #63d9e8; /* A bright, ethereal cyan for contrast */
+    --c-logoscript-1: var(--c-king);
+    --c-logoscript-2: var(--c-wisdom);
+
+    /* -- UI Component Colors -- */
+    --c-button-bg: var(--c-bg-offset);
+    --c-button-text: var(--c-text);
+    --c-menu-border: #fbf9f3;
+    /* -- Code Block Colors -- */
+    --c-code-bg: #181818;
+    --c-code-text: #d6d6d6;
+    --c-code-string: #f7d58b; /* Added soft gold for dark mode strings */
+    --c-code-comment: #888888;
+    --c-code-symbol: #ffa07a;
+
+    /* -- Interactive Diagram Colors -- */
+    --c-path-delight: #58a6ff;
+    --c-path-plague: #ff6666;
+    --c-grid-line: rgba(255, 255, 255, 0.15); /* Faint white for the grid */
+  }
+}
+
+/* --- 3. General & Typographic Styles --- */
+@font-face {
+  font-family: "Source Serif 4 Display";
+  src: url("SourceSerif4Display-Light.ttf.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  line-height: 1.4;
+  color: var(--c-text);
+  background: var(--c-bg);
+  margin: 0;
+}
+
+.container {
+  max-width: 700px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+p {
+  text-align: justify;
+  margin: 0 0 8.5pt 0;
+}
+
+h1 {
+  font-size: 17pt;
+  font-weight: normal;
+  line-height: 22pt;
+  text-align: center;
+  margin: 5em 0 0.2em 0;
+}
+
+h2, h3, h4 {
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 12pt 0 8.5pt 0;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 18pt;
+  text-align: center;
+}
+
+h3 { font-style: italic; text-align: center; }
+
+.author { text-align: center; margin-bottom: 1em; }
+
+a {
+  color: var(--c-link);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--c-link-hover);
+}
+
+a:hover, a:focus {
+  color: var(--c-link-hover);
+  border-bottom-style: solid;
+}
+
+blockquote {
+  margin: 1em 0.5in;
+  padding-left: 0.5em;
+  border-left: 2px solid var(--c-border);
+  font-style: italic;
+  color: var(--c-text-soft);
+}
+
+ul {
+  margin: 0 0 8.5pt 0.75in;
+  padding: 0;
+  list-style-position: outside;
+}
+
+ul li {
+  padding-left: 0.25in;
+  text-indent: -0.25in;
+}
+
+footer, .text-center, .text-center h1, .text-center h2,
+.text-center h3, .text-center p, .text-center blockquote {
+  text-align: center;
+}
+
+/* --- 4. Content & Thematic Styles --- */
+.divine { font-variant: small-caps; font-weight: bold; }
+.king { color: var(--c-king); }
+.wisdom { color: var(--c-wisdom); }
+.sibyl { font-size: min(2.5rem, 1.5rem); font-variant: small-caps; font-weight: normal; }
+
+@keyframes shimmer-red-blue {
+  0%, 100% { color: var(--c-logoscript-1); }
+  50% { color: var(--c-logoscript-2); }
+}
+
+.logoscript {
+  font-weight: bold;
+  font-variant: small-caps;
+  animation: shimmer-red-blue 6s infinite ease-in-out;
+}
+
+figure { margin: 1.5em auto; text-align: center; }
+picture { display: block; margin: auto; width: 50%; }
+img { max-width: 100%; height: auto; }
+figure figcaption {
+  font-size: 8.5pt;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  margin: 4px auto;
+  max-width: 90%;
+}
+figure figcaption strong { font-weight: bold; font-style: italic; }
+
+footer, footer p { text-align:center; padding:1.25rem 0; }
+footer nav a { margin: 0 0.25rem; text-decoration:none; }
+footer picture { display:block; margin:0.75rem auto 0; }
+
+
+.table-container { overflow-x: auto; margin: 1em auto; }
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 5.5in;
+  border-bottom: 1px solid var(--c-border-strong);
+}
+table caption { font-size: 8.5pt; line-height: 14pt; margin-bottom: 4pt; text-align: center; }
+table caption strong { font-weight: bold; font-style: italic; }
+th, td { font-size: 8.5pt; padding: 4px; }
+th { border-bottom: 1px solid var(--c-border-strong); }
+table tbody tr:last-child td { border-bottom: 1px solid var(--c-border-strong); }
+
+.scripture-title {
+  font-family: var(--font-display);
+  font-size: min(10vw, 5.2rem);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  max-width: 90vw;
+  display: block;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.subtitle {
+  font-size: min(0.55rem, 2vw);
+  font-weight: normal;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  display: block;
+  margin-top: 0.25em;
+}
+
+.scripture-subtitle {
+  font-size: min(1.25rem, 4vw);
+  font-weight: normal;
+  line-height: 22pt;
+  text-align: center;
+  margin: 0.2em 0;
+}
+
+.verse-num-primary { font-weight: bold; color: var(--c-text); margin-right: 6px; }
+.verse-num-ref { font-style: italic; font-size: 0.85em; vertical-align: super; color: var(--c-text-soft); margin: 0 6px 0 2px; }
+.verse-ref { font-variant: small-caps; font-weight: bold; color: var(--c-text-soft); margin: 0 2px 0 4px; }
+
+/* --- 5. Component Styles --- */
+#table-of-contents {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid var(--c-border);
+  background: var(--c-bg-offset);
+  border-radius: 8px;
+}
+#table-of-contents ul { list-style: none; padding: 0; margin: 0; }
+#table-of-contents > ul > li { font-size: 12pt; font-weight: bold; margin-bottom: 0.75rem; }
+#table-of-contents ul ul { margin-top: 0.25rem; padding-left: 1.25rem; }
+#table-of-contents ul ul li { font-size: 11pt; font-weight: normal; margin-bottom: 0.5rem; }
+#table-of-contents a { color: var(--c-link); border-bottom-color: var(--c-link-hover); }
+#table-of-contents a:hover { color: var(--c-link-hover); border-bottom-style: solid; }
+
+#floating-menu, #menu-toggle {
+  background: var(--c-button-bg);
+  color: var(--c-button-text);
+  border: 2px solid var(--c-menu-border);
+  font-family: inherit;
+  font-size: 12pt;
+}
+#floating-menu {
+  position: fixed;
+  bottom: 70px; right: 15px;
+  width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px var(--c-menu-outline), 2px 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  pointer-events: none;
+}
+#menu-toggle {
+  position: fixed;
+  bottom: 15px; right: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+#floating-menu:not(.hidden) { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#floating-menu ul { list-style: none; margin: 0; padding: 0.5rem; }
+#floating-menu li { margin: 0.25rem 0; }
+#floating-menu button, #floating-menu a {
+  display: block; width: 100%; padding: 6px 12px;
+  color: inherit; background: none; border: none;
+  text-align: left; cursor: pointer; text-decoration: none;
+}
+#floating-menu button:hover, #floating-menu a:hover { background-color: rgba(255, 255, 255, 0.2); }
+
+.verse-tts-button {
+  background: none; border: 1px solid var(--c-text-soft); border-radius: 3px;
+  padding: 2px 6px; margin-right: 0.5em; font-size: 0.85em;
+  font-variant: small-caps; color: var(--c-wisdom); cursor: pointer;
+}
+
+/* --- 5a. Additional Component Styles --- */
+.chapter, .subchapter {
+  position: relative; /* Allows positioning of the TTS button */
+}
+
+.verse {
+  position: relative;
+}
+
+/* --- 6. Interactive Diagram Styles --- */
+/* Common container for all diagrams */
+.interactive-wheel, .triangle-container, .heptagon-container, .dodecagon-container,
+.cuboctahedron-container, .octahedron-container, .cube-container, .nested-container {
+  background-color: var(--c-bg-offset);
+  border: 1px solid var(--c-border);
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1.5em auto;
+  text-align: center;
+  position: relative;
+}
+
+/* Specific Diagram Elements */
+#creationWheel { cursor: pointer; width: 100%; height: auto; }
+.line { stroke: var(--c-grid-line); stroke-width: 0.5px; }
+.point { fill: var(--c-text); transition: fill 0.2s ease-out, r 0.2s ease-out; }
+.label-text { fill: var(--c-text-soft); font-family: var(--font-serif); font-size: 18px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.line.path-delight { stroke: var(--c-path-delight); stroke-width: 2px; }
+.point.selected-delight { r: 8; fill: var(--c-path-delight); }
+.line.path-plague { stroke: var(--c-path-plague); stroke-width: 2px; }
+.point.selected-plague { r: 8; fill: var(--c-path-plague); }
+.line.path-default { stroke: var(--c-path-default); stroke-width: 2px; }
+.point.selected-default { r: 8; fill: var(--c-path-default); }
+
+#word-display-container { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 1rem; }
+#word-display { font-family: var(--font-serif); font-size: 1.8em; letter-spacing: 0.2em; color: var(--c-text); background-color: var(--c-bg); border: 1px solid var(--c-border); border-radius: 3px; padding: 5px 15px; }
+.clearButton { font-family: var(--font-serif); font-size: 11pt; background-color: var(--c-bg-offset); color: var(--c-text); border: 1px solid var(--c-border); border-radius: 3px; padding: 8px 15px; cursor: pointer; }
+.clearButton:hover { background-color: var(--c-wisdom); color: var(--c-bg); border-color: var(--c-wisdom); }
+#triangle-svg { cursor: pointer; border-radius: 10px; }
+#triangle-readout { margin-top: 20px; font-size: 1.2em; min-height: 5em; }
+
+#cuboctahedron-canvas-container, #nested-canvas-container,
+#octahedron-canvas-container, #cube-canvas-container {
+  width: 100%; /* Allow the container to shrink on small screens */
+  height: auto; /* Adjust height automatically */
+  aspect-ratio: 1 / 1; /* Maintain a square shape */
+  margin: 0 auto;
+  cursor: grab;
+}
+
+/* Set the maximum size for each group */
+#cuboctahedron-canvas-container, #nested-canvas-container {
+  max-width: 500px;
+}
+#octahedron-canvas-container, #cube-canvas-container {
+  max-width: 400px;
+}
+.label { color: var(--c-text-soft); font-family: var(--font-serif); font-size: 20px; }
+
+/* --- 6a. Interactive Diagram Specifics --- */
+
+/* Creation Wheel Portal */
+#portal-gate {
+  visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures the iframe content is clipped to the circle */
+}
+
+/* Triangle Diagram Readouts */
+.element-fire { color: var(--c-king); }
+.element-water { color: var(--c-wisdom); }
+.element-air { color: var(--c-text); }
+@media (prefers-color-scheme: dark) {
+  .element-air { color: var(--c-text); }
+}
+
+/* Heptagon Diagram */
+.heptagon-controls {
+  margin-bottom: 1rem;
+}
+.heptagon-controls button {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  background-color: var(--c-bg-offset);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: 3px;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.heptagon-controls button.active {
+  background-color: var(--c-wisdom);
+  color: var(--c-bg);
+  border-color: var(--c-wisdom);
+}
+.heptagon-point {
+  fill: var(--c-text);
+  transition: fill 0.2s;
+  filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+}
+@keyframes heptagon-pulse {
+  0% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)); }
+  50% { filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)); }
+  100% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)); }
+}
+.heptagon-point.active {
+  animation: heptagon-pulse 2s infinite ease-in-out;
+}
+.heptagon-point.active:hover {
+  fill: var(--c-wisdom);
+}
+.heptagon-point.selected {
+  fill: var(--c-wisdom);
+}
+.heptagon-point.mirror {
+  fill: var(--c-king);
+}
+.heptagon-point.hybrid {
+  fill: var(--c-code-number); /* Using a distinct color */
+}
+.heptagon-path-line {
+  stroke: var(--c-wisdom);
+  stroke-width: 2px;
+  pointer-events: none;
+}
+.heptagon-mirror-path-line {
+  stroke: var(--c-king);
+  stroke-width: 2px;
+  stroke-dasharray: 5,5;
+  pointer-events: none;
+}
+.heptagon-label-text {
+  fill: var(--c-text-soft);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+#heptagon-readout {
+  margin-top: 20px;
+  font-size: 1.2em;
+  min-height: 4em;
+}
+#heptagon-calculation {
+  font-family: var(--font-mono);
+  color: var(--c-code-string);
+}
+.heptagon-button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+#heptagon-resetButton {
+  margin-top: 20px;
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  background-color: var(--c-bg-offset);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: 3px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+/* Dodecagon (Hierarchy) Diagram */
+.dodecagon-point {
+  transition: r 0.2s ease-out;
+  cursor: pointer;
+}
+.dodecagon-point:hover {
+  r: 12;
+}
+.dodecagon-line {
+  stroke: rgba(128, 128, 128, 0.2);
+  stroke-width: 0.75px;
+  pointer-events: none;
+  transition: stroke 0.2s ease-out, stroke-opacity 0.2s ease-out;
+}
+.dodecagon-line.highlighted {
+  stroke: var(--c-code-string); /* Yellow */
+  stroke-opacity: 1.0;
+  stroke-width: 1.5px;
+}
+.dodecagon-label-text {
+  fill: var(--c-text-soft);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+#dodecagon-readout {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+#dodecagon-edge-counter {
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--c-text-soft);
+  margin-top: 0.5em;
+  min-height: 1.2em; /* Prevents layout shift */
+}
+
+
+/* --- 7. Reading Mode & Utility --- */
+.hidden { display: none !important; }
+
+body.reading-mode { font-size: 14pt; line-height: 1.6; }
+body.reading-mode .container { max-width: 1000px; width: 95%; padding: 2rem 1rem; }
+body.reading-mode h1, body.reading-mode h2, body.reading-mode h3, body.reading-mode img,
+body.reading-mode figure, body.reading-mode header, body.reading-mode .verse-tts-button,
+body.reading-mode .author, body.reading-mode .verse-ref, body.reading-mode .verse-num-ref,
+body.reading-mode #toggle-toc, body.reading-mode nav, body.reading-mode #titlepage,
+body.reading-mode #dedication, body.reading-mode .triangle-container,
+body.reading-mode .heptagon-container, body.reading-mode .cube-container, 
+body.reading-mode .octahedron-container, body.reading-mode .cuboctahedron-container,
+body.reading-mode .dodecagon-container, body.reading-mode .nested-container,
+body.reading-mode sup {
+  display: none !important;
+}
+body.reading-mode a {
+  pointer-events: none; cursor: default; color: inherit;
+  text-decoration: none; border: none;
+}
+body.reading-mode .menu-button { display: block !important; }
+
+/* --- 8. Responsive Adjustments --- */
+
+@media (max-width: 600px) {
+  body { font-size: 12pt; }
+  .container { width: 95%; }
+  ul, ol { margin-left: 0.5in; }
+}
+
+/* --- 9. Additional Responsive Fixes --- */
+
+/* Make SVG-based diagrams responsive */
+#triangle-svg, #heptagon-svg {
+  width: 100%;
+  height: auto;
+  max-width: 400px; /* Preserve original size on larger screens */
+}
+
+/* Make tables more compact on small screens to prevent overflow */
+@media (max-width: 600px) {
+  th, td {
+    font-size: 7.5pt; /* Reduce font size to fit more content */
+    padding: 3px;     /* Reduce cell padding */
+  }
+
+  table caption {
+    font-size: 8pt; /* Adjust caption size as well */
+  }
+}
+/*------------------------*/
+/* ---- Core utility classes used across figures ---- */
+.no-fill { fill: none; }
+.draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
+        transition: stroke-dashoffset var(--dur,1s) linear; }
+.reveal { stroke-dashoffset: 0; }
+.fade { opacity: 0; transition: opacity 160ms ease; }
+.show { opacity: 1; }
+.compass-dot { r: 3.5; }
+.gone { display: none !important; }
+
+/* Avoid capturing pointer events on decorative groups */
+#construction, #labels, #compasses { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .draw { transition: none; stroke-dashoffset: 0 !important; }
+  .fade { transition: none; opacity: 1 !important; }
+}

@@ -2,18 +2,34 @@
 WSOG.register('i12-perp-off', function(fig){
   const q = sel => fig.querySelector(sel);
 
+  // Coordinates: M(80,0), P(80,120), Y(170,0)
+  const Mpt = { x: 80, y: 0 };
+  const P = { x: 80, y: 120 };
+  const Y = { x: 170, y: 0 };
+
   const L  = q('#i12-l');
   const cP = q('#i12-cP');
   const cX = q('#i12-cX');
   const cY = q('#i12-cY');
 
-  const X = q('#i12-X'), Xt = q('#i12-Xt');
-  const Y = q('#i12-Y'), Yt = q('#i12-Yt');
+  const Xpt = q('#i12-X'), Xt = q('#i12-Xt');
+  const Ypt = q('#i12-Y'), Yt = q('#i12-Yt');
   const M = q('#i12-M'), Mt = q('#i12-Mt');
 
   const UV = q('#i12-uv');
   const PM = q('#i12-pm');
-  const right = q('#i12-right');
+  const result = q('#result');
+
+  // Create programmatic right angle box at M
+  const right = WSOG.helpers.createRightAngleBox(
+    result,
+    Mpt.x, Mpt.y,  // vertex at M
+    Y.x, Y.y,      // point on horizontal ray (toward Y)
+    P.x, P.y,      // point on perpendicular ray (toward P)
+    14,            // size
+    { offset: 0, strokeWidth: 2, className: 'line path-default rightbox fade' }
+  );
+  right.setAttribute('id', 'i12-right');
 
   // Compass
   const compP = q('#i12-compassP');
@@ -30,7 +46,7 @@ WSOG.register('i12-perp-off', function(fig){
   function reset(){
     step = 0;
     [L, cP, cX, cY, UV, PM].forEach(el => el.classList.remove('reveal'));
-    [X,Xt,Y,Yt,M,Mt,right].forEach(el => { el.classList.add('fade'); el.classList.remove('show'); });
+    [Xpt,Xt,Ypt,Yt,M,Mt,right].forEach(el => { el.classList.add('fade'); el.classList.remove('show'); });
     [compP, compX, compY].forEach(el => { el.classList.add('gone'); el.classList.remove('fade'); });
     try { spinP.endElement(); spinX.endElement(); spinY.endElement(); } catch(e){}
   }
@@ -39,7 +55,7 @@ WSOG.register('i12-perp-off', function(fig){
     switch(step){
       case 0: L.classList.add('reveal'); break;                               // base line
       case 1: WSOG.helpers.showAndSweep(compP, spinP, cP);                    // circle at P
-              [X,Xt,Y,Yt].forEach(el => { el.classList.remove('fade'); el.classList.add('show'); });
+              [Xpt,Xt,Ypt,Yt].forEach(el => { el.classList.remove('fade'); el.classList.add('show'); });
               break;
       case 2: WSOG.helpers.showAndSweep(compX, spinX, cX); break;             // circle at X
       case 3: WSOG.helpers.showAndSweep(compY, spinY, cY); break;             // circle at Y

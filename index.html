@@ -21,6 +21,7 @@
 <script defer src="scripts/figures/i10-bisect-seg.js"></script>
 <script defer src="scripts/figures/i11-perp-on.js"></script>
 <script defer src="scripts/figures/i12-perp-off.js"></script>
+<script defer src="scripts/figures/i16-angles.js"></script>
 <script defer src="script.js"></script>
 <!-- Progressive Web App -->
 <link href="manifest.json" rel="manifest"/>
@@ -570,14 +571,7 @@
         <line x1="320" y1="0" x2="500" y2="0" class="line path-default" stroke-width="2"/>
         <line x1="320" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
         <line x1="500" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
-        <!-- angle arc at D -->
-        <path d="M340,0 A20,20 0 0 1 332.2,15.32" class="line path-default" stroke-width="1"/>
-        <!-- tick marks: DE (one tick), DF (double tick) -->
-        <line x1="410" y1="-6" x2="410" y2="6" class="line path-default tick" stroke-width="2"/>
-        <g>
-          <line x1="371" y1="56" x2="377" y2="66" class="line path-default tick" stroke-width="2"/>
-          <line x1="377" y1="53" x2="383" y2="63" class="line path-default tick" stroke-width="2"/>
-        </g>
+        <!-- angle arc and tick marks generated programmatically -->
       </g>
       <!-- 2) First triangle (△ABC) to be animated/overlaid (blue) -->
       <g id="triABC">
@@ -588,15 +582,7 @@
                 class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
           <line id="bc4" x1="180" y1="0" x2="102.85" y2="122.56"
                 class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
-          <!-- angle arc at A -->
-          <path id="arcA" d="M20,0 A20,20 0 0 1 12.2,15.32" class="line path-default draw no-fill"
-                style="--len:31.4; --dur:0.6s" stroke-width="1"/>
-          <!-- tick marks: AB (one tick), AC (double tick) -->
-          <line id="tickAB" x1="90" y1="-6" x2="90" y2="6" class="line path-default tick fade" stroke-width="2"/>
-          <g id="ticksAC" class="fade">
-            <line x1="62" y1="56" x2="68" y2="66" class="line path-default tick" stroke-width="2"/>
-            <line x1="68" y1="53" x2="74" y2="63" class="line path-default tick" stroke-width="2"/>
-          </g>
+          <!-- angle arc and tick marks generated programmatically -->
         </g>
         <!-- label group so they stay on top of edges -->
         <g id="labels" class="show">
@@ -1359,7 +1345,7 @@
   Hence <code>∠A = ∠ECF</code>. Since ray <strong>CF</strong> lies inside the exterior angle <code>∠ACD</code>, we have <code>∠ECF &lt; ∠ACD</code>, so <code>∠A &lt; ∠ACD</code>.
   Repeating the same construction with the midpoint of <strong>BC</strong> shows <code>∠B &lt; ∠ACD</code>. Q.E.D.
 </p>
-<figure class="triangle-container" aria-labelledby="i16-caption">
+<figure class="triangle-container" data-figure="i16-angles" aria-labelledby="i16-caption">
   <figcaption id="i16-caption">
     <h3>Exterior angle is greater than either remote interior angle.</h3>
   </figcaption>

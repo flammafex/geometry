@@ -2,10 +2,11 @@
 WSOG.register('i12-perp-off', function(fig){
   const q = sel => fig.querySelector(sel);
 
-  // Coordinates: M(80,0), P(80,120), Y(170,0)
+  // Coordinates: M(80,0), P(80,120), Y(170,0), U(80,-120)
   const Mpt = { x: 80, y: 0 };
   const P = { x: 80, y: 120 };
   const Y = { x: 170, y: 0 };
+  const U = { x: 80, y: -120 };  // Upper point on perpendicular
 
   const L  = q('#i12-l');
   const cP = q('#i12-cP');
@@ -24,8 +25,8 @@ WSOG.register('i12-perp-off', function(fig){
   const right = WSOG.helpers.createRightAngleBox(
     result,
     Mpt.x, Mpt.y,  // vertex at M
-    Y.x, Y.y,      // point on horizontal ray (toward Y)
-    P.x, P.y,      // point on perpendicular ray (toward P)
+    Y.x, Y.y,      // point on horizontal ray (toward Y, right)
+    U.x, U.y,      // point on perpendicular ray (toward U, up)
     14,            // size
     { offset: 0, strokeWidth: 2, className: 'line path-default rightbox fade' }
   );

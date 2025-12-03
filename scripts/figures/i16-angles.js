@@ -1,5 +1,5 @@
-// ---- Figure: i16-demo - Demonstrates programmatic tick marks and angle arcs
-WSOG.register('i16-demo', function(fig){
+// ---- Figure: i16-angles - Exterior Angle Theorem with correct arcs
+WSOG.register('i16-angles', function(fig){
   const svg = fig.querySelector('svg');
   const arcsGroup = svg.querySelector('#arcs');
 
@@ -24,7 +24,7 @@ WSOG.register('i16-demo', function(fig){
     { strokeWidth: 1, className: 'line path-default' }
   );
 
-  // ∠B: angle at B between rays BA and BC
+  // ∠B: angle at B between rays BA and BC (FIXED!)
   WSOG.helpers.createAngleArc(
     arcsGroup,
     B.x, B.y,     // vertex

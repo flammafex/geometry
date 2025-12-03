@@ -21,6 +21,7 @@
 <script defer src="scripts/figures/i10-bisect-seg.js"></script>
 <script defer src="scripts/figures/i11-perp-on.js"></script>
 <script defer src="scripts/figures/i12-perp-off.js"></script>
+<script defer src="scripts/figures/i16-angles.js"></script>
 <script defer src="script.js"></script>
 <!-- Progressive Web App -->
 <link href="manifest.json" rel="manifest"/>
@@ -570,14 +571,7 @@
         <line x1="320" y1="0" x2="500" y2="0" class="line path-default" stroke-width="2"/>
         <line x1="320" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
         <line x1="500" y1="0" x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
-        <!-- angle arc at D -->
-        <path d="M340,0 A20,20 0 0 1 332.2,15.32" class="line path-default" stroke-width="1"/>
-        <!-- tick marks: DE (one tick), DF (double tick) -->
-        <line x1="410" y1="-6" x2="410" y2="6" class="line path-default tick" stroke-width="2"/>
-        <g>
-          <line x1="371" y1="56" x2="377" y2="66" class="line path-default tick" stroke-width="2"/>
-          <line x1="377" y1="53" x2="383" y2="63" class="line path-default tick" stroke-width="2"/>
-        </g>
+        <!-- angle arc and tick marks generated programmatically -->
       </g>
       <!-- 2) First triangle (△ABC) to be animated/overlaid (blue) -->
       <g id="triABC">
@@ -588,15 +582,7 @@
                 class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
           <line id="bc4" x1="180" y1="0" x2="102.85" y2="122.56"
                 class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
-          <!-- angle arc at A -->
-          <path id="arcA" d="M20,0 A20,20 0 0 1 12.2,15.32" class="line path-default draw no-fill"
-                style="--len:31.4; --dur:0.6s" stroke-width="1"/>
-          <!-- tick marks: AB (one tick), AC (double tick) -->
-          <line id="tickAB" x1="90" y1="-6" x2="90" y2="6" class="line path-default tick fade" stroke-width="2"/>
-          <g id="ticksAC" class="fade">
-            <line x1="62" y1="56" x2="68" y2="66" class="line path-default tick" stroke-width="2"/>
-            <line x1="68" y1="53" x2="74" y2="63" class="line path-default tick" stroke-width="2"/>
-          </g>
+          <!-- angle arc and tick marks generated programmatically -->
         </g>
         <!-- label group so they stay on top of edges -->
         <g id="labels" class="show">
@@ -659,17 +645,7 @@
       <line x1="320" y1="0"   x2="500" y2="0"    class="line path-default" stroke-width="2"/>
       <line x1="320" y1="0"   x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
       <line x1="500" y1="0"   x2="422.85" y2="122.56" class="line path-default" stroke-width="2"/>
-      <!-- tick marks for DE (1), DF (2), EF (3) -->
-      <line x1="410" y1="-6" x2="410" y2="6" class="line path-default tick" stroke-width="2"/>
-      <g>
-        <line x1="371" y1="56" x2="377" y2="66" class="line path-default tick" stroke-width="2"/>
-        <line x1="377" y1="53" x2="383" y2="63" class="line path-default tick" stroke-width="2"/>
-      </g>
-      <g>
-        <line x1="472" y1="56" x2="468" y2="66" class="line path-default tick" stroke-width="2"/>
-        <line x1="478" y1="53" x2="474" y2="63" class="line path-default tick" stroke-width="2"/>
-        <line x1="475" y1="50" x2="471" y2="60" class="line path-default tick" stroke-width="2"/>
-      </g>
+      <!-- tick marks for DE (1), DF (2), EF (3) generated programmatically -->
     </g>
 
     <!-- Foreground triangle △ABC (blue) -->
@@ -682,17 +658,7 @@
         <line id="bc8" x1="180" y1="0" x2="102.85" y2="122.56"
               class="line path-delight draw" style="--len:160; --dur:0.6s" stroke-width="2"/>
 
-        <!-- tick marks for AB (1), AC (2), BC (3) -->
-        <line id="tickAB8" x1="90" y1="-6" x2="90" y2="6" class="line path-default tick fade" stroke-width="2"/>
-        <g id="ticksAC8" class="fade">
-          <line x1="62" y1="56" x2="68" y2="66" class="line path-default tick" stroke-width="2"/>
-          <line x1="68" y1="53" x2="74" y2="63" class="line path-default tick" stroke-width="2"/>
-        </g>
-        <g id="ticksBC8" class="fade">
-          <line x1="154" y1="56" x2="150" y2="66" class="line path-default tick" stroke-width="2"/>
-          <line x1="160" y1="53" x2="156" y2="63" class="line path-default tick" stroke-width="2"/>
-          <line x1="157" y1="50" x2="153" y2="60" class="line path-default tick" stroke-width="2"/>
-        </g>
+        <!-- tick marks for AB (1), AC (2), BC (3) generated programmatically -->
       </g>
 
       <!-- labels on top -->
@@ -1359,7 +1325,7 @@
   Hence <code>∠A = ∠ECF</code>. Since ray <strong>CF</strong> lies inside the exterior angle <code>∠ACD</code>, we have <code>∠ECF &lt; ∠ACD</code>, so <code>∠A &lt; ∠ACD</code>.
   Repeating the same construction with the midpoint of <strong>BC</strong> shows <code>∠B &lt; ∠ACD</code>. Q.E.D.
 </p>
-<figure class="triangle-container" aria-labelledby="i16-caption">
+<figure class="triangle-container" data-figure="i16-angles" aria-labelledby="i16-caption">
   <figcaption id="i16-caption">
     <h3>Exterior angle is greater than either remote interior angle.</h3>
   </figcaption>
@@ -1394,17 +1360,7 @@
 
     <!-- Angle arcs -->
     <g id="arcs" aria-label="Angle markings">
-      <!-- ∠A at A (between AB and AC): radius 18 -->
-      <path d="M18,0 A18,18 0 0 1 11.24,14.06" class="line path-default" fill="none" stroke-width="1"/>
-
-      <!-- ∠B at B (between BA and BC): radius 18 -->
-      <path d="M162,0 A18,18 0 0 1 171.95,16.10" class="line path-default" fill="none" stroke-width="1"/>
-
-      <!-- Subangle at C equal to ∠A: ∠ECF with radius 20 (from CA direction to CF (west)) -->
-      <path d="M97.63,124.29 A20,20 0 0 0 90,140" class="line path-default" fill="none" stroke-width="1"/>
-
-      <!-- Exterior angle at C: ∠ACD with slightly larger radius 26 (from CA direction to CD) -->
-      <path d="M93.92,119.57 A26,26 0 0 0 98.38,163.24" class="line path-default" fill="none" stroke-width="1.2"/>
+      <!-- Angle arcs generated programmatically by scripts/figures/i16-angles.js -->
     </g>
 
     <!-- Labels -->

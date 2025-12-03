@@ -8,7 +8,20 @@
 <title>The World Science of Geometry</title>
 <link href="style.css" media="screen" rel="stylesheet"/>
 <link href="print.css" media="print" rel="stylesheet"/>
-<script defer="" src="script.js"></script>
+<!-- JavaScript modules -->
+<script defer src="scripts/pwa.js"></script>
+<script defer src="scripts/menu.js"></script>
+<script defer src="scripts/tts.js"></script>
+<script defer src="scripts/figures.js"></script>
+<script defer src="scripts/figures/i1-equilateral.js"></script>
+<script defer src="scripts/figures/i4-sas.js"></script>
+<script defer src="scripts/figures/i8-sss.js"></script>
+<script defer src="scripts/figures/i26-asa.js"></script>
+<script defer src="scripts/figures/i9-bisect-ang.js"></script>
+<script defer src="scripts/figures/i10-bisect-seg.js"></script>
+<script defer src="scripts/figures/i11-perp-on.js"></script>
+<script defer src="scripts/figures/i12-perp-off.js"></script>
+<script defer src="script.js"></script>
 <!-- Progressive Web App -->
 <link href="manifest.json" rel="manifest"/>
 <meta content="yes" name="mobile-web-app-capable"/>
@@ -537,23 +550,7 @@
   <p>
     Let △ABC and △DEF satisfy <code>|AB| = |DE|</code>, <code>|AC| = |DF|</code>, and <code>∠BAC = ∠EDF</code>. Superpose △ABC onto △DEF by placing <strong>A</strong> onto <strong>D</strong> and aligning <strong>AB</strong> with <strong>DE</strong>. Because the included angles at <strong>A</strong> and <strong>D</strong> are equal, ray <strong>AC</strong> coincides with ray <strong>DF</strong>, and since <code>|AC| = |DF|</code>, point <strong>C</strong> falls on <strong>F</strong>. Thus △ABC and △DEF coincide: <code>△ABC ≅ △DEF</code>. Corresponding bases and angles are equal. Q.E.D.
   </p>
-  <figure class="triangle-container" aria-labelledby="i4-caption">
-    <style>
-      .no-fill { fill: none; }
-      .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
-              transition: stroke-dashoffset var(--dur,1s) linear; }
-      .reveal { stroke-dashoffset: 0; }
-      .fade { opacity: 0; transition: opacity 160ms ease; }
-      .show { opacity: 1; }
-      .gone { display: none !important; }
-      .compass-dot { r: 3.5; }
-      #construction, #labels { pointer-events: none; }
-      .tick { stroke-linecap: round; }
-      @media (prefers-reduced-motion: reduce) {
-        .draw { transition: none; stroke-dashoffset: 0 !important; }
-        .fade { transition: none; opacity: 1 !important; }
-      }
-    </style>
+  <figure class="triangle-container" data-figure="i4-sas" aria-labelledby="i4-caption">
     <figcaption id="i4-caption">
       <h3>Triangle Congruence (SAS)</h3>
       Step: △ABC → △DEF (givens) → overlay A→D → conclude △ABC ≅ △DEF.
@@ -622,55 +619,6 @@
         <circle class="point" cx="422.85" cy="122.56" r="3"/><text x="430" y="122.56" class="label-text">F</text>
       </g>
     </svg>
-    <script>
-      (function(){
-        const ab  = document.getElementById('ab4');
-        const ac  = document.getElementById('ac4');
-        const bc  = document.getElementById('bc4');
-        const arcA= document.getElementById('arcA');
-        const tickAB = document.getElementById('tickAB');
-        const ticksAC= document.getElementById('ticksAC');
-        const move = document.getElementById('i4-move');
-		const moveBack = document.getElementById('i4-return');
-        const btnStep = document.getElementById('i4-step');
-        const btnReset= document.getElementById('i4-reset');
-
-       	let step = 0;
-		let hasMoved = false;
-		const prefersReduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-		function reset(){
-  			step = 0;
-  			[ab, ac, bc, arcA].forEach(el => el.classList.remove('reveal'));
-  			[tickAB, ticksAC].forEach(el => el.classList.add('fade'));
-			if (hasMoved) { try { moveBack.beginElement(); } catch(e){} }
-  			hasMoved = false;
-		}
-
-		function doStep(){
-		  switch(step){
-			case 0: [ab, ac, bc, arcA].forEach(el => el.classList.add('reveal')); break;
-			case 1: tickAB.classList.remove('fade'); ticksAC.classList.remove('fade'); break;
-			case 2:
-			if (prefersReduce) {
-			  // snap without animation
-			  document.getElementById('triABC').setAttribute('transform', 'translate(320 0)');
-			  hasMoved = true;
-			} else {
-			  try { move.beginElement(); hasMoved = true; } catch(e){}
-			}
-			break;
-			case 3: /* no-op */ break;
-			default: return;
-		  }
-		  step++;
-		}
-
-        btnStep.addEventListener('click', doStep);
-        btnReset.addEventListener('click', reset);
-        reset();
-      })();
-    </script>
   </figure>
   <h4 id="1.2-sss">Side–Side–Side (SSS)</h4>
   <blockquote>
@@ -687,23 +635,7 @@
   <!-- ——————————————————————————————————— -->
 <!-- I.8 — Side–Side–Side (SSS) -->
 <!-- ——————————————————————————————————— -->
-<figure class="triangle-container" aria-labelledby="i8-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
-            transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    .tick { stroke-linecap: round; }
-    #labels, #labelsDEF { pointer-events: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
-
+<figure class="triangle-container" data-figure="i8-sss" aria-labelledby="i8-caption">
   <figcaption id="i8-caption">
     <h3>Triangle Congruence (SSS)</h3>
     Step: draw △ABC → mark equal sides → overlay A→D → conclude △ABC ≅ △DEF.
@@ -787,54 +719,6 @@
     </g>
   </svg>
 
-  <script>
-    (function(){
-      const ab  = document.getElementById('ab8');
-      const ac  = document.getElementById('ac8');
-      const bc  = document.getElementById('bc8');
-      const tAB = document.getElementById('tickAB8');
-      const tAC = document.getElementById('ticksAC8');
-      const tBC = document.getElementById('ticksBC8');
-
-      const move = document.getElementById('i8-move');
-      const back = document.getElementById('i8-return');
-      const tri  = document.getElementById('triABC');
-
-      const btnStep = document.getElementById('i8-step');
-      const btnReset= document.getElementById('i8-reset');
-
-      let step = 0, hasMoved = false;
-      const prefersReduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-      function reset(){
-        step = 0;
-        [ab, ac, bc].forEach(el => el.classList.remove('reveal'));
-        [tAB, tAC, tBC].forEach(el => el.classList.add('fade'));
-        if (hasMoved) { try { back.beginElement(); } catch(e){} }
-        if (prefersReduce) { tri.setAttribute('transform', 'translate(0 0)'); }
-        hasMoved = false;
-      }
-
-      function doStep(){
-        switch(step){
-          case 0: [ab, ac, bc].forEach(el => el.classList.add('reveal')); break;          // draw △ABC
-          case 1: tAB.classList.remove('fade'); tAC.classList.remove('fade');             // show equal side ticks
-                  tBC.classList.remove('fade'); break;
-          case 2: if (prefersReduce) { tri.setAttribute('transform', 'translate(320 0)'); // overlay A→D
-                                     hasMoved = true; }
-                  else { try { move.beginElement(); hasMoved = true; } catch(e){} }
-                  break;
-          case 3: /* visual coincidence is the conclusion */ break;
-          default: return;
-        }
-        step++;
-      }
-
-      btnStep.addEventListener('click', doStep);
-      btnReset.addEventListener('click', reset);
-      reset();
-    })();
-  </script>
 </figure>
 
   <h4 id="1.2-asa">Angle–Side–Angle (ASA) and AAS</h4>
@@ -852,23 +736,7 @@
 <!-- ——————————————————————————————————— -->
 <!-- I.26 — Angle–Side–Angle / AAS (ASA/AAS) -->
 <!-- ——————————————————————————————————— -->
-<figure class="triangle-container" aria-labelledby="i26-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
-            transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    .tick { stroke-linecap: round; }
-    #labels, #labelsDEF { pointer-events: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
-
+<figure class="triangle-container" data-figure="i26-asa" aria-labelledby="i26-caption">
   <figcaption id="i26-caption">
     <h3>Triangle Congruence (ASA / AAS)</h3>
     Step: draw △ABC → mark two equal angles + one side → rotate about A to match ∠A→∠D → translate A→D → conclude △ABC ≅ △DEF.
@@ -956,77 +824,6 @@
     </g>
   </svg>
 
-  <script>
-    (function(){
-      const ab  = document.getElementById('ab26');
-      const ac  = document.getElementById('ac26');
-      const bc  = document.getElementById('bc26');
-      const arcA= document.getElementById('arcA26');
-      const arcB= document.getElementById('arcB26');
-      const tick= document.getElementById('tickAB26');
-
-      const rot     = document.getElementById('i26-rot');
-      const rotBack = document.getElementById('i26-rot-return');
-      const move    = document.getElementById('i26-move');
-      const back    = document.getElementById('i26-return');
-
-      const triOuter = document.getElementById('triABC');     // translate container
-      const triRot   = document.getElementById('triABC-rot'); // rotate container
-
-      const btnStep = document.getElementById('i26-step');
-      const btnReset= document.getElementById('i26-reset');
-
-      let step = 0, hasRot = false, hasMoved = false;
-      const prefersReduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-      function reset(){
-        step = 0;
-        [ab, ac, bc, arcA, arcB].forEach(el => el.classList.remove('reveal'));
-        tick.classList.add('fade');
-
-        if (hasMoved) { try { back.beginElement(); } catch(e){} }
-        if (hasRot)   { try { rotBack.beginElement(); } catch(e){} }
-        if (prefersReduce) {
-          triOuter.setAttribute('transform','translate(0 0)');
-          triRot.setAttribute('transform','rotate(0 0 0)');
-        }
-        hasRot = hasMoved = false;
-      }
-
-      function doStep(){
-        switch(step){
-          case 0: // draw △ABC
-            [ab, ac, bc, arcA, arcB].forEach(el => el.classList.add('reveal'));
-            break;
-          case 1: // show two equal angles + one equal side
-            tick.classList.remove('fade');
-            break;
-          case 2: // rotate about A to match ∠A with ∠D
-            if (prefersReduce) {
-              triRot.setAttribute('transform','rotate(20 0 0)');
-            } else {
-              try { rot.beginElement(); } catch(e){}
-            }
-            hasRot = true;
-            break;
-          case 3: // translate A→D to superpose
-            if (prefersReduce) {
-              triOuter.setAttribute('transform','translate(320 0)');
-            } else {
-              try { move.beginElement(); } catch(e){}
-            }
-            hasMoved = true;
-            break;
-          default: return;
-        }
-        step++;
-      }
-
-      btnStep.addEventListener('click', doStep);
-      btnReset.addEventListener('click', reset);
-      reset();
-    })();
-  </script>
 </figure>
 </section>
 	<section>
@@ -1094,22 +891,7 @@
   <li>Let <strong>X</strong>, <strong>Y</strong> be the two intersections: <code>{X,Y} = c<sub>A</sub> ∩ c<sub>B</sub></code>.</li>
   <li>Draw the line <strong>XY</strong>; let <strong>M = XY ∩ AB</strong>. Then <code>|AM| = |MB|</code> and <strong>XY ⟂ AB</strong>.</li>
 </ol>
-<figure class="triangle-container" aria-labelledby="i10-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    #construction, #labels, #result { pointer-events: none; }
-    .tick { stroke-linecap: round; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
-
+<figure class="triangle-container" data-figure="i10-bisect-seg" aria-labelledby="i10-caption">
   <figcaption id="i10-caption">
     <h3>Bisect a segment AB.</h3>
     Step: AB → circle(A) → circle(B) → X &amp; Y → line XY (midpoint M).
@@ -1178,72 +960,6 @@
     </g>
   </svg>
 
- <script>
-  (function(){
-    const ab = document.getElementById('i10-ab');
-    const cA = document.getElementById('i10-cA');
-    const cB = document.getElementById('i10-cB');
-    const X  = document.getElementById('i10-X');
-    const Y  = document.getElementById('i10-Y');
-    const Xt = document.getElementById('i10-Xt');
-    const Yt = document.getElementById('i10-Yt');
-    const M  = document.getElementById('i10-M');
-    const Mt = document.getElementById('i10-Mt');
-    const XY = document.getElementById('i10-xy');
-    const midtick = document.getElementById('i10-midtick1');
-
-    // NEW: compass refs
-    const compA = document.getElementById('i10-compassA');
-    const compB = document.getElementById('i10-compassB');
-    const spinA = document.getElementById('i10-spinA');
-    const spinB = document.getElementById('i10-spinB');
-    const SWEEP_MS = 1000; // must match dur="1.0s"
-
-    const stepBtn = document.getElementById('i10-step');
-    const resetBtn= document.getElementById('i10-reset');
-
-    let step = 0;
-
-    // NEW: helpers to show & hide the temporary compass
-    function hideCompass(comp){
-      comp.classList.add('fade');
-      setTimeout(() => { comp.classList.remove('fade'); comp.classList.add('gone'); }, 160);
-    }
-    function showAndSweep(comp, spin, circle){
-      comp.classList.remove('gone');
-      void comp.offsetWidth; // reflow
-      circle.classList.add('reveal');
-      try { spin.beginElement(); } catch(e){}
-      setTimeout(() => hideCompass(comp), SWEEP_MS);
-    }
-
-    function reset(){
-      step = 0;
-      [ab, cA, cB, XY].forEach(el => el.classList.remove('reveal'));
-      [X, Y, Xt, Yt, M, Mt, midtick].forEach(el => el.classList.remove('show'));
-      [X, Y, Xt, Yt, M, Mt, midtick].forEach(el => el.classList.add('fade'));
-      // NEW: ensure compasses hidden
-      [compA, compB].forEach(el => { el.classList.add('gone'); el.classList.remove('fade'); });
-      try { spinA.endElement(); spinB.endElement(); } catch(e){}
-    }
-
-    function doStep(){
-      switch(step){
-        case 0: ab.classList.add('reveal'); break;                     // AB
-        case 1: showAndSweep(compA, spinA, cA); break;                 // circle at A (+ sweep)
-        case 2: showAndSweep(compB, spinB, cB); break;                 // circle at B (+ sweep)
-        case 3: [X,Y,Xt,Yt].forEach(el=>{el.classList.remove('fade'); el.classList.add('show');}); break; // X,Y
-        case 4: XY.classList.add('reveal'); [M,Mt,midtick].forEach(el=>{el.classList.remove('fade'); el.classList.add('show');}); break; // XY + M
-        default: return;
-      }
-      step++;
-    }
-
-    stepBtn.addEventListener('click', doStep);
-    resetBtn.addEventListener('click', reset);
-    reset();
-  })();
-</script>
 
 </figure>
 <h4 id="1.4-ang">Angle Bisection</h4>
@@ -1266,21 +982,7 @@
   <li>Let <strong>D</strong> be an intersection of <em>c</em><sub>E</sub> and <em>c</em><sub>F</sub> inside the angle.</li>
   <li>Draw <strong>AD</strong>; then <code>∠EAD = ∠DAC</code>.</li>
 </ol>
-<figure class="triangle-container" aria-labelledby="i9-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    #construction, #labels, #result { pointer-events: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
-
+<figure class="triangle-container" data-figure="i9-bisect-ang" aria-labelledby="i9-caption">
   <figcaption id="i9-caption">
     <h3>Bisect an angle ∠BAC.</h3>
     Step: rays AB &amp; AC → circle(A) hits E,F → circle(E) &amp; circle(F) → point D → draw AD.
@@ -1471,22 +1173,7 @@
 <p>
   From the equal-radius circles at <strong>B</strong> and <strong>C</strong>, we have <code>|XB|=|XC|</code> and <code>|YB|=|YC|</code>. Thus <strong>X</strong> and <strong>Y</strong> lie on the perpendicular bisector of <strong>BC</strong>. Since <strong>A</strong> is the midpoint of <strong>BC</strong>, the line through <strong>X</strong> and <strong>Y</strong> is ⟂ to <strong>ℓ</strong> at <strong>A</strong>. Q.E.D.
 </p>
-<figure class="triangle-container" aria-labelledby="i11-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
-            transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    #construction, #labels, #result, #i11-compasses { pointer-events: none; }
-    .rightbox { fill: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
+<figure class="triangle-container" data-figure="i11-perp-on" aria-labelledby="i11-caption">
   <figcaption id="i11-caption">
     <h3>Perpendicular at A on line ℓ.</h3>
     Step: draw ℓ (…B–A–C) → circle(B) → circle(C) → reveal X,Y → draw XY (⟂ at A).
@@ -1554,63 +1241,6 @@
     </g>
   </svg>
 
-  <script>
-    (function(){
-      const L  = document.getElementById('i11-l');
-      const cB = document.getElementById('i11-cB');
-      const cC = document.getElementById('i11-cC');
-      const X  = document.getElementById('i11-X'), Xt = document.getElementById('i11-Xt');
-      const Y  = document.getElementById('i11-Y'), Yt = document.getElementById('i11-Yt');
-      const XY = document.getElementById('i11-xy');
-      const right = document.getElementById('i11-right');
-
-      // compass bits
-      const compB = document.getElementById('i11-compassB');
-      const compC = document.getElementById('i11-compassC');
-      const spinB = document.getElementById('i11-spinB');
-      const spinC = document.getElementById('i11-spinC');
-      const SWEEP_MS = 1000;
-
-      const stepBtn = document.getElementById('i11-step');
-      const resetBtn= document.getElementById('i11-reset');
-      let step = 0;
-
-      function hideCompass(comp){
-        comp.classList.add('fade');
-        setTimeout(()=>{ comp.classList.remove('fade'); comp.classList.add('gone'); },160);
-      }
-      function showAndSweep(comp, spin, circle){
-        comp.classList.remove('gone'); void comp.offsetWidth;
-        circle.classList.add('reveal');
-        try { spin.beginElement(); } catch(e){}
-        setTimeout(()=> hideCompass(comp), SWEEP_MS);
-      }
-
-      function reset(){
-        step = 0;
-        [L, cB, cC, XY].forEach(el => el.classList.remove('reveal'));
-        [X, Xt, Y, Yt, right].forEach(el => { el.classList.add('fade'); el.classList.remove('show'); });
-        [compB, compC].forEach(el => { el.classList.add('gone'); el.classList.remove('fade'); });
-        try { spinB.endElement(); spinC.endElement(); } catch(e){}
-      }
-
-      function doStep(){
-        switch(step){
-          case 0: L.classList.add('reveal'); break;
-          case 1: showAndSweep(compB, spinB, cB); break;
-          case 2: showAndSweep(compC, spinC, cC); break;
-          case 3: [X,Y,Xt,Yt].forEach(el => { el.classList.remove('fade'); el.classList.add('show'); }); break;
-          case 4: XY.classList.add('reveal'); right.classList.remove('fade'); right.classList.add('show'); break;
-          default: return;
-        }
-        step++;
-      }
-
-      stepBtn.addEventListener('click', doStep);
-      resetBtn.addEventListener('click', reset);
-      reset();
-    })();
-  </script>
 </figure>
 </section>
 	<section>
@@ -1626,23 +1256,7 @@
 <p>
   The points <strong>X</strong> and <strong>Y</strong> are equidistant from <strong>P</strong>. The midpoint <strong>M</strong> of <strong>XY</strong> lies on the perpendicular bisector of <strong>XY</strong>. Since <strong>P</strong> is also equidistant from <strong>X</strong> and <strong>Y</strong>, the line <strong>PM</strong> is that perpendicular bisector, hence ⟂ to the base line at <strong>M</strong>. Q.E.D.
 </p>
-<figure class="triangle-container" aria-labelledby="i12-caption">
-  <style>
-    .no-fill { fill: none; }
-    .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
-            transition: stroke-dashoffset var(--dur,1s) linear; }
-    .reveal { stroke-dashoffset: 0; }
-    .fade { opacity: 0; transition: opacity 160ms ease; }
-    .show { opacity: 1; }
-    .gone { display: none !important; }
-    #construction, #labels, #result, #i12-compasses { pointer-events: none; }
-    .rightbox { fill: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .draw { transition: none; stroke-dashoffset: 0 !important; }
-      .fade { transition: none; opacity: 1 !important; }
-    }
-  </style>
-
+<figure class="triangle-container" data-figure="i12-perp-off" aria-labelledby="i12-caption">
   <figcaption id="i12-caption">
     <h3>Perpendicular from P to line ℓ.</h3>
     Step: draw ℓ → circle(P) hits X,Y → circle(X) &amp; circle(Y) → draw UV (bisector) &amp; mark M → draw PM (⟂).
@@ -1726,75 +1340,6 @@
     </g>
   </svg>
 
-  <script>
-    (function(){
-      const L  = document.getElementById('i12-l');
-      const cP = document.getElementById('i12-cP');
-      const cX = document.getElementById('i12-cX');
-      const cY = document.getElementById('i12-cY');
-
-      const X = document.getElementById('i12-X'), Xt = document.getElementById('i12-Xt');
-      const Y = document.getElementById('i12-Y'), Yt = document.getElementById('i12-Yt');
-      const M = document.getElementById('i12-M'), Mt = document.getElementById('i12-Mt');
-
-      const UV = document.getElementById('i12-uv');
-      const PM = document.getElementById('i12-pm');
-      const right = document.getElementById('i12-right');
-
-      // compass
-      const compP = document.getElementById('i12-compassP');
-      const compX = document.getElementById('i12-compassX');
-      const compY = document.getElementById('i12-compassY');
-      const spinP = document.getElementById('i12-spinP');
-      const spinX = document.getElementById('i12-spinX');
-      const spinY = document.getElementById('i12-spinY');
-      const SWEEP_MS = 1000;
-
-      const stepBtn = document.getElementById('i12-step');
-      const resetBtn= document.getElementById('i12-reset');
-      let step = 0;
-
-      function hideCompass(comp){
-        comp.classList.add('fade');
-        setTimeout(()=>{ comp.classList.remove('fade'); comp.classList.add('gone'); },160);
-      }
-      function showAndSweep(comp, spin, circle){
-        comp.classList.remove('gone'); void comp.offsetWidth;
-        circle.classList.add('reveal');
-        try { spin.beginElement(); } catch(e){}
-        setTimeout(()=> hideCompass(comp), SWEEP_MS);
-      }
-
-      function reset(){
-        step = 0;
-        [L, cP, cX, cY, UV, PM].forEach(el => el.classList.remove('reveal'));
-        [X,Xt,Y,Yt,M,Mt,right].forEach(el => { el.classList.add('fade'); el.classList.remove('show'); });
-        [compP, compX, compY].forEach(el => { el.classList.add('gone'); el.classList.remove('fade'); });
-        try { spinP.endElement(); spinX.endElement(); spinY.endElement(); } catch(e){}
-      }
-
-      function doStep(){
-        switch(step){
-          case 0: L.classList.add('reveal'); break;                               // base line
-          case 1: showAndSweep(compP, spinP, cP);                                 // circle at P
-                  [X,Xt,Y,Yt].forEach(el => { el.classList.remove('fade'); el.classList.add('show'); });
-                  break;
-          case 2: showAndSweep(compX, spinX, cX); break;                          // circle at X
-          case 3: showAndSweep(compY, spinY, cY); break;                          // circle at Y
-          case 4: UV.classList.add('reveal');                                     // perpendicular bisector of XY
-                  [M,Mt].forEach(el => { el.classList.remove('fade'); el.classList.add('show'); });
-                  break;
-          case 5: PM.classList.add('reveal'); right.classList.remove('fade'); right.classList.add('show'); break; // draw PM + right box
-          default: return;
-        }
-        step++;
-      }
-
-      stepBtn.addEventListener('click', doStep);
-      resetBtn.addEventListener('click', reset);
-      reset();
-    })();
-  </script>
 </figure>
 </section>
 	<section>

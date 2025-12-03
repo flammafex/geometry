@@ -174,6 +174,65 @@ WSOG.helpers = {
     const length = path.getTotalLength();
     document.body.removeChild(path);
     return length;
+  },
+
+  /**
+   * Create a right-angle box at the intersection of two perpendicular rays
+   * @param {SVGElement} parent - Parent SVG group to append box to
+   * @param {number} vx, vy - Vertex coordinates (corner of the right angle)
+   * @param {number} p1x, p1y - Point on first ray
+   * @param {number} p2x, p2y - Point on second ray
+   * @param {number} size - Size of the box (default: 14)
+   * @param {Object} options - Optional styling
+   *   - offset: distance from vertex to start box (default: 2)
+   *   - strokeWidth: width of box lines (default: 2)
+   *   - className: CSS class to apply (default: 'line path-default rightbox fade')
+   * @returns {SVGPathElement} - The created path element
+   */
+  createRightAngleBox(parent, vx, vy, p1x, p1y, p2x, p2y, size = 14, options = {}) {
+    const {
+      offset = 2,
+      strokeWidth = 2,
+      className = 'line path-default rightbox fade'
+    } = options;
+
+    // Calculate unit direction vectors for both rays
+    const dx1 = p1x - vx;
+    const dy1 = p1y - vy;
+    const len1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+    const ux1 = dx1 / len1;
+    const uy1 = dy1 / len1;
+
+    const dx2 = p2x - vx;
+    const dy2 = p2y - vy;
+    const len2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+    const ux2 = dx2 / len2;
+    const uy2 = dy2 / len2;
+
+    // Calculate the three corners of the box
+    // Start at offset distance from vertex along first ray
+    const corner1X = vx + ux1 * offset;
+    const corner1Y = vy + uy1 * offset;
+
+    // Move size units along first ray
+    const corner2X = vx + ux1 * (offset + size);
+    const corner2Y = vy + uy1 * (offset + size);
+
+    // From corner2, move size units along second ray (forming the right angle)
+    const corner3X = corner2X + ux2 * size;
+    const corner3Y = corner2Y + uy2 * size;
+
+    // Create SVG path (open box - three sides)
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const d = `M ${corner1X} ${corner1Y} L ${corner2X} ${corner2Y} L ${corner3X} ${corner3Y}`;
+
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke-width', strokeWidth);
+    path.setAttribute('class', className);
+
+    parent.appendChild(path);
+    return path;
   }
 };
 

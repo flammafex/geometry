@@ -2,16 +2,22 @@
 WSOG.register('i26-asa', function(fig){
   const q = sel => fig.querySelector(sel);
 
-  // Triangle coordinates
+  // Triangle ABC coordinates
   const A = { x: 0, y: 0 };
   const B = { x: 160, y: 0 };
   const C = { x: 91.92, y: 77.14 };
+
+  // Triangle DEF coordinates (rotated + translated)
+  const D = { x: 320, y: 0 };
+  const E = { x: 470.24, y: 54.68 };
+  const F = { x: 380.05, y: 103.73 };
 
   const ab  = q('#ab26');
   const ac  = q('#ac26');
   const bc  = q('#bc26');
   const arcA= q('#arcA26');
   const tick= q('#tickAB26');
+  const triDEF = q('#triDEF');
 
   const rot     = q('#i26-rot');
   const rotBack = q('#i26-rot-return');
@@ -22,7 +28,7 @@ WSOG.register('i26-asa', function(fig){
   const triRot   = q('#triABC-rot'); // rotate container
   const edges    = q('#edges');
 
-  // Create programmatic angle arc at B
+  // Create programmatic angle arc at B (foreground triangle)
   const arcB = WSOG.helpers.createAngleArc(
     edges,
     B.x, B.y,  // vertex at B
@@ -37,6 +43,33 @@ WSOG.register('i26-asa', function(fig){
   const arcBLength = WSOG.helpers.getPathLength(arcB.getAttribute('d'));
   arcB.style.setProperty('--len', arcBLength);
   arcB.style.setProperty('--dur', '0.6s');
+
+  // Background triangle DEF markers
+  // Angle arc at D
+  WSOG.helpers.createAngleArc(
+    triDEF,
+    D.x, D.y,  // vertex at D
+    E.x, E.y,  // point on ray DE
+    F.x, F.y,  // point on ray DF
+    20,        // radius
+    { strokeWidth: 1, className: 'line path-default' }
+  );
+
+  // Angle arc at E
+  WSOG.helpers.createAngleArc(
+    triDEF,
+    E.x, E.y,  // vertex at E
+    D.x, D.y,  // point on ray ED
+    F.x, F.y,  // point on ray EF
+    18,        // radius
+    { strokeWidth: 1, className: 'line path-default' }
+  );
+
+  // Tick mark on DE (equal to AB)
+  WSOG.helpers.createSideTicks(triDEF, D.x, D.y, E.x, E.y, 1, {
+    className: 'line path-default tick',
+    strokeWidth: 2
+  });
 
   const btnStep = q('#i26-step');
   const btnReset= q('#i26-reset');
